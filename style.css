@@ -49,6 +49,7 @@ main {
   width: 100%;
   height: 100%;
   padding: 12px;
+  padding-top: 85px;
   color: var(--text);
   background-color: var(--bg);
   display: flex;
@@ -60,7 +61,7 @@ main {
 
 .players,
 .imposter {
-  width: 90%;
+  width: 95%;
   max-width: 400px;
   min-height: 100px;
   background: #111827d9;
@@ -137,7 +138,7 @@ main {
 .start span {
   color: var(--text);
   font-weight: 600;
-  font-size: 25px;
+  font-size: 22px;
 }
 .start:hover {
   background-color: var(--bg);
@@ -268,6 +269,7 @@ main {
   text-align: center;
   width: 100%;
   height: 100%;
+  padding: 15px;
   top: 0;
   right: 0;
   background-color: #123;
@@ -314,7 +316,7 @@ main {
   backface-visibility: hidden;
 }
 .flippedBox .front h1 {
-  margin: 60px 0;
+  margin: 80px 0;
   user-select: none;
 }
 .flippedBox .front .note i {
