@@ -1,0 +1,420 @@
+@import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
+:root {
+  --bg: #0f172a;
+  --panel: #111827;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --accent: #22c55e;
+  --danger: #ef4444;
+  --btn: #1f2937;
+  --btnText: #fff;
+  --card: #0b1222;
+}
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  transition: all 0.3s linear;
+}
+
+body {
+  font-family: "Cairo", sans-serif;
+  height: 100vh;
+  color: var(--text);
+  background-color: var(--bg);
+}
+
+main {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  padding-top: 60px;
+  text-align: center;
+  color: var(--text);
+  background-color: var(--bg);
+  overflow: hidden;
+}
+
+.header {
+  position: fixed;
+  z-index: 1000;
+  text-align: center;
+  margin: 0 auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+}
+.header .logo {
+  font-size: 34px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.header .logo span {
+  color: var(--danger);
+}
+
+.players,
+.categories,
+.imposter {
+  width: 100%;
+  max-width: 420px;
+  min-height: 100px;
+  background: #111827d9;
+  border: 1px solid #ffffff0f;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  margin: 20px auto;
+  text-align: right;
+  cursor: pointer;
+}
+.players:hover,
+.categories:hover,
+.imposter:hover {
+  background: rgba(14, 24, 44, 0.85);
+}
+.players > h4,
+.categories > h4,
+.imposter > h4 {
+  width: 100%;
+  margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: normal;
+}
+.players > h4 i,
+.categories > h4 i {
+  font-size: 18px;
+  color: var(--accent);
+}
+.imposter > h4 i {
+  font-size: 18px;
+  color: var(--danger);
+}
+.categories > h4 i {
+  color: yellow;
+}
+.players .count-players,
+.categories .selected-categories {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.players .count-players li,
+.categories .selected-categories li {
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 1.3;
+  background-color: #010010;
+  height: 30px;
+  padding: 4px 8px;
+  border-radius: 12px;
+}
+.players .count-players li > i {
+  color: var(--danger);
+}
+.imposter .count-imposter {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 20px;
+}
+
+.start {
+  outline: none;
+  border: none;
+  background-color: green;
+  color: #fff;
+  font-weight: bold;
+  font-size: 24px;
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 2px solid #fff;
+  margin: 0 auto 20px;
+}
+.start:hover {
+  background-color: var(--accent);
+  color: #222;
+  border-color: #222;
+}
+
+.box {
+  position: fixed;
+  bottom: -1000px;
+  left: 0;
+  width: 100%;
+  min-height: 50%;
+  background-color: #fff4f4;
+  color: #222;
+  text-align: center;
+  padding: 20px 0;
+  border-radius: 30px 30px 0 0;
+}
+
+.box h3 {
+  width: 100%;
+  margin: 10px auto 0;
+  font-size: 24px;
+}
+
+.box p {
+  width: 100%;
+  margin: 10px auto;
+  font-size: 16px;
+  margin-top: 0;
+  font-weight: bold;
+  color: #777;
+}
+
+.box ul {
+  list-style: none;
+  width: 100%;
+  background-color: #8888886b;
+  padding: 20px;
+  margin-bottom: 20px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+* {
+  scrollbar-width: none;
+}
+* {
+  -ms-overflow-style: none;
+}
+
+.box ul li {
+  position: relative;
+  background-color: #f1f1f1;
+  border: 1px solid #999;
+  width: 75%;
+  height: 50px;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.box ul li .player {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 10px 40px 10px 10px;
+  outline: none;
+  color: #000;
+}
+
+.box ul li i {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.box ul li i.del {
+  color: red;
+  left: 10px;
+}
+.box ul li i.edit {
+  color: #555;
+  right: 5px;
+  font-size: 18px;
+}
+.playerTXT {
+  position: relative;
+  width: 80%;
+  padding: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #222;
+  border: 2px solid #ffff00;
+  border-radius: 16px;
+  margin-bottom: 15px;
+}
+.addButton {
+  width: 80%;
+  padding: 10px;
+  background-color: #111;
+  color: white;
+  font-size: 20px;
+  font-weight: 500;
+  border: 1px solid #000;
+  border-radius: 16px;
+  cursor: pointer;
+}
+.addButton:hover {
+  background-color: #000;
+}
+
+.game-starter-box,
+.guessing-began,
+.dataDisclosure {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  background-color: #123;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  z-index: -5;
+}
+.go {
+  opacity: 1;
+  z-index: 5;
+}
+
+.game-starter-box .flippedBox {
+  position: relative;
+  width: 230px;
+  height: 300px;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.flippedBox .back {
+  transform: rotateY(180deg);
+}
+.flippedBox.flip .front {
+  transform: rotateY(180deg);
+}
+.flippedBox.flip .back {
+  transform: rotateY(360deg);
+}
+.flippedBox .face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  backface-visibility: hidden;
+}
+.flippedBox .front h1 {
+  margin: 60px 0;
+  user-select: none;
+}
+.flippedBox .front .note i {
+  color: #555;
+}
+.flippedBox .front .note p {
+  color: #777;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 14px;
+  user-select: none;
+}
+.flippedBox .back h2 {
+  padding: 0 12px;
+  border: 4px solid #fff;
+  border-radius: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  user-select: none;
+}
+.game-starter-box .next {
+  width: 150px;
+  height: 50px;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #000;
+  border: #fff 1px solid;
+  cursor: pointer;
+}
+
+.guessing-began {
+  color: #fff;
+  padding: 12px;
+}
+.guessing-began h2 {
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.guessing-began h3 {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+.guessing-began h3 span {
+  background-color: #4dff64;
+  color: #000;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+.guessing-began p {
+  padding: 12px;
+  border: 1px solid #fff;
+  border-radius: 18px;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.startingOver,
+.startingOver2 {
+  color: #6d6d6d;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  border: 2px solid #000000;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.dataDisclosure {
+  color: #fff;
+}
+.dataDisclosure .line {
+  background-color: #777;
+  width: 250px;
+  height: 2px;
+  margin-bottom: 20px;
+}
+
+.dataDisclosure h2 {
+  margin-bottom: 20px;
+  font-size: 30px;
+  line-height: 2.4;
+}
+.dataDisclosure h2 span {
+  background-color: #4dff64;
+  color: #000;
+  font-size: 24px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  margin-left: 8px;
+}
+.dataDisclosure p {
+  font-size: 24px;
+  font-weight: bold;
+}
+.dataDisclosure h1 {
+  margin-bottom: 20px;
+}
