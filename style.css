@@ -132,8 +132,8 @@ main {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   color: var(--text);
   font-weight: 600;
-  padding: 15px;
   cursor: pointer;
+  margin-bottom: 30px;
 }
 .start:hover {
   background-color: var(--bg);
