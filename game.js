@@ -42,14 +42,14 @@ let counT = 1;
 // ألوان اللاعبين
 // ========================
 const colors = [
-  "#7aff52ff",
-  "#de7cffff",
-  "#ffa74fff",
   "#ffff50ff",
+  "#7aff52ff",
+  "#ffa74fff",
   "#80ffaaff",
   "#60afffff",
   "#9966B2",
   "#66B2CC",
+  "#de7cffff",
   "#80BFA6",
   "#CC8088",
   "#CC9966",
@@ -115,10 +115,10 @@ addButton.onclick = function () {
     playerTXT.value = "";
     localStorage.setItem("NAMESp", JSON.stringify(namesOfplayers));
     renderPlayers();
-    playerTXT.style.borderColor = "#ffff00";
+    playerTXT.style.borderColor = "#22c55e";
   } else {
     playerTXT.style.borderColor = "red";
-    setTimeout(() => (playerTXT.style.borderColor = "#ffff00"), 1000);
+    setTimeout(() => (playerTXT.style.borderColor = "#22c55e"), 2000);
   }
   playerTXT.focus();
 };
@@ -261,4 +261,8 @@ startingOver.onclick = () => {
 };
 startingOver2.onclick = () => {
   location.reload();
+};
+
+document.querySelector(".closed").onclick = function () {
+  document.querySelector(".box").style.bottom = "-1000px";
 };

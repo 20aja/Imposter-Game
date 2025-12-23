@@ -1,14 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
 :root {
-  --bg: #0f172a;
-  --panel: #111827;
+  --bg: #123;
   --text: #e5e7eb;
-  --muted: #94a3b8;
   --accent: #22c55e;
   --danger: #ef4444;
-  --btn: #1f2937;
-  --btnText: #fff;
-  --card: #0b1222;
 }
 * {
   box-sizing: border-box;
@@ -24,41 +19,49 @@ body {
   background-color: var(--bg);
 }
 
-main {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-  padding-top: 60px;
-  text-align: center;
-  color: var(--text);
-  background-color: var(--bg);
-  overflow: hidden;
-}
-
 .header {
   position: fixed;
-  z-index: 1000;
-  text-align: center;
-  margin: 0 auto;
+  background-color: #111827d9;
+  border: 1px solid #ffffff0f;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
+  height: 120px;
+  border-radius: 0 0 20px 20px;
+  z-index: 1000;
 }
 .header .logo {
   font-size: 34px;
   font-weight: bold;
+  color: var(--text);
   cursor: pointer;
 }
 .header .logo span {
   color: var(--danger);
 }
 
-.players,
-.categories,
-.imposter {
+main {
+  position: relative;
   width: 100%;
-  max-width: 420px;
+  height: 100%;
+  padding: 12px;
+  color: var(--text);
+  background-color: var(--bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.players,
+.imposter {
+  width: 90%;
+  max-width: 400px;
   min-height: 100px;
   background: #111827d9;
   border: 1px solid #ffffff0f;
@@ -66,37 +69,29 @@ main {
   backdrop-filter: blur(6px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   padding: 15px;
-  margin: 20px auto;
+  margin: 0 auto 30px;
   text-align: right;
   cursor: pointer;
 }
 .players:hover,
-.categories:hover,
 .imposter:hover {
-  background: rgba(14, 24, 44, 0.85);
+  background: var(--bg);
 }
 .players > h4,
-.categories > h4,
 .imposter > h4 {
-  width: 100%;
   margin-bottom: 20px;
   font-size: 24px;
-  font-weight: normal;
+  font-weight: 500;
 }
-.players > h4 i,
-.categories > h4 i {
+.players > h4 i {
   font-size: 18px;
   color: var(--accent);
 }
 .imposter > h4 i {
-  font-size: 18px;
+  font-size: 20px;
   color: var(--danger);
 }
-.categories > h4 i {
-  color: yellow;
-}
-.players .count-players,
-.categories .selected-categories {
+.players .count-players {
   width: 100%;
   list-style: none;
   display: flex;
@@ -104,15 +99,14 @@ main {
   flex-wrap: wrap;
   gap: 6px;
 }
-.players .count-players li,
-.categories .selected-categories li {
+.players .count-players li {
   font-size: 16px;
   font-weight: bold;
   line-height: 1.3;
   background-color: #010010;
   height: 30px;
   padding: 4px 8px;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 .players .count-players li > i {
   color: var(--danger);
@@ -120,30 +114,29 @@ main {
 .imposter .count-imposter {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   font-size: 16px;
   font-weight: bold;
-  margin: 0 20px;
+  gap: 10px;
 }
 
 .start {
-  outline: none;
-  border: none;
-  background-color: green;
-  color: #fff;
-  font-weight: bold;
-  font-size: 24px;
-  width: 150px;
-  height: 40px;
-  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  height: 50px;
+  font-size: 25px;
+  background: #111827d9;
+  border: 1px solid #ffffff0f;
+  border-radius: 20px;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  color: var(--text);
+  font-weight: 600;
+  padding: 15px;
   cursor: pointer;
-  border: 2px solid #fff;
-  margin: 0 auto 20px;
 }
 .start:hover {
-  background-color: var(--accent);
-  color: #222;
-  border-color: #222;
+  background-color: var(--bg);
 }
 
 .box {
@@ -153,31 +146,38 @@ main {
   width: 100%;
   min-height: 50%;
   background-color: #fff4f4;
+  border: 1px solid var(--bg);
   color: #222;
   text-align: center;
   padding: 20px 0;
   border-radius: 30px 30px 0 0;
 }
-
+.box .closed {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+  font-weight: bolder;
+  font-size: 28px;
+  color: var(--accent);
+}
 .box h3 {
-  width: 100%;
   margin: 10px auto 0;
   font-size: 24px;
 }
 
 .box p {
-  width: 100%;
   margin: 10px auto;
   font-size: 16px;
   margin-top: 0;
   font-weight: bold;
-  color: #777;
+  color: #999;
 }
 
 .box ul {
   list-style: none;
   width: 100%;
-  background-color: #8888886b;
+  background-color: #bbbbbb;
   padding: 20px;
   margin-bottom: 20px;
   max-height: 200px;
@@ -198,20 +198,18 @@ main {
   background-color: #f1f1f1;
   border: 1px solid #999;
   width: 75%;
-  height: 50px;
+  height: 40px;
   border-radius: 10px;
   margin: 0 auto;
   margin-bottom: 10px;
 }
 
 .box ul li .player {
-  width: 100%;
-  height: 100%;
   background: transparent;
   border: none;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 10px 40px 10px 10px;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px 30px 10px 10px;
   outline: none;
   color: #000;
 }
@@ -240,23 +238,23 @@ main {
   font-size: 16px;
   font-weight: bold;
   color: #222;
-  border: 2px solid #ffff00;
+  border: 2px solid var(--accent);
   border-radius: 16px;
   margin-bottom: 15px;
 }
 .addButton {
   width: 80%;
   padding: 10px;
-  background-color: #111;
+  background-color: var(--bg);
   color: white;
   font-size: 20px;
-  font-weight: 500;
-  border: 1px solid #000;
+  border: 2px solid #fcfcfc;
   border-radius: 16px;
+  font-weight: 500;
   cursor: pointer;
 }
 .addButton:hover {
-  background-color: #000;
+  background-color: #111;
 }
 
 .game-starter-box,
@@ -269,7 +267,7 @@ main {
   top: 0;
   right: 0;
   background-color: #123;
-  color: #000;
+  color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -284,10 +282,11 @@ main {
 
 .game-starter-box .flippedBox {
   position: relative;
-  width: 230px;
-  height: 300px;
+  width: 280px;
+  height: 330px;
   margin-bottom: 30px;
   border-radius: 12px;
+  color: #000;
   overflow: hidden;
 }
 .flippedBox .back {
@@ -315,27 +314,29 @@ main {
   user-select: none;
 }
 .flippedBox .front .note i {
-  color: #555;
+  color: #333;
 }
 .flippedBox .front .note p {
-  color: #777;
+  color: #222;
   margin-top: 10px;
   font-weight: bold;
   font-size: 14px;
   user-select: none;
 }
 .flippedBox .back h2 {
-  padding: 0 12px;
-  border: 4px solid #fff;
-  border-radius: 12px;
-  font-size: 20px;
-  font-weight: bold;
+  color: #000;
   user-select: none;
+  font-weight: bold;
+  border: 2px solid #111;
+  padding: 4px;
+  border-radius: 10px;
+  width: 90%;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
 }
 .game-starter-box .next {
-  width: 150px;
+  min-width: 150px;
   height: 50px;
-  padding: 10px 20px;
   border-radius: 12px;
   font-size: 18px;
   font-weight: bold;
@@ -358,16 +359,16 @@ main {
   margin-bottom: 20px;
 }
 .guessing-began h3 span {
-  background-color: #4dff64;
-  color: #000;
-  padding: 2px 6px;
+  background-color: var(--accent);
+  color: #111;
+  padding: 0 6px;
   border-radius: 4px;
   font-weight: bold;
   margin-left: 8px;
 }
 .guessing-began p {
   padding: 12px;
-  border: 1px solid #fff;
+  border: 1px solid var(--accent);
   border-radius: 18px;
   font-size: 20px;
   font-weight: 600;
@@ -381,7 +382,8 @@ main {
   font-weight: bold;
   cursor: pointer;
   text-decoration: none;
-  border: 2px solid #000000;
+  border: 1px solid var(--accent);
+  outline: none;
   padding: 4px 8px;
   border-radius: 8px;
   background-color: #fff;
@@ -403,16 +405,15 @@ main {
   line-height: 2.4;
 }
 .dataDisclosure h2 span {
-  background-color: #4dff64;
-  color: #000;
-  font-size: 24px;
+  background-color: var(--accent);
+  color: #111;
+  font-size: 22px;
   padding: 2px 6px;
   border-radius: 4px;
   font-weight: bold;
-  margin-left: 8px;
 }
 .dataDisclosure p {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
 }
 .dataDisclosure h1 {
