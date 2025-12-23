@@ -123,17 +123,21 @@ main {
 .start {
   width: 90%;
   max-width: 400px;
-  min-height: 50px;
-  font-size: 25px;
+  height: 50px;
   background: #111827d9;
   border: 1px solid #ffffff0f;
   border-radius: 20px;
-  backdrop-filter: blur(6px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: ltr;
+}
+.start span {
   color: var(--text);
   font-weight: 600;
-  cursor: pointer;
-  margin-bottom: 30px;
+  font-size: 25px;
 }
 .start:hover {
   background-color: var(--bg);
