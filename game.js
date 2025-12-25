@@ -1,14 +1,36 @@
-// ========================
+// =================================
+// UI: تغيير المود
+// =================================
+let mode = localStorage.getItem("Mode") || "night";
+if (mode === "day") {
+  document.body.classList.add("changeMode");
+} else {
+  document.body.classList.remove("changeMode");
+}
+document.querySelector(".mode").addEventListener("click", function () {
+  if (mode === "night") {
+    document.body.classList.add("changeMode");
+    localStorage.setItem("Mode", "day");
+    mode = "day";
+  } else if (mode === "day") {
+    document.body.classList.remove("changeMode");
+    localStorage.setItem("Mode", "night");
+    mode = "night";
+  }
+});
+// =================================
 // UI: عرض وإخفاء صندوق تعديل اللاعبين
-// ========================
+// =================================
 document.querySelector(".players").onclick = function () {
-  const display = document.querySelector(".box");
-  display.style.bottom = display.style.bottom === "-1000px" ? "0" : "-1000px";
+  document.querySelector(".box").style.bottom = "0";
+};
+document.querySelector(".closed").onclick = function () {
+  document.querySelector(".box").style.bottom = "-1000px";
 };
 
-// ========================
-// UI: قلب الكرت باللمس (اضغط واستمر)
-// ========================
+// // =================================
+// // UI: قلب الكرت باللمس (اضغط واستمر)
+// // =================================
 const flippedBox = document.querySelector(".flippedBox");
 flippedBox.addEventListener("touchstart", function () {
   flippedBox.classList.add("flip");
@@ -17,12 +39,12 @@ flippedBox.addEventListener("touchend", function () {
   flippedBox.classList.remove("flip");
 });
 
-// ========================
-// عناصر DOM
-// ========================
+// // =================================
+// // عناصر DOM
+// // =================================
 const addButton = document.querySelector(".addButton");
 const playerTXT = document.querySelector(".playerTXT");
-const countPlayers = document.querySelector(".count-players");
+const playersList = document.querySelector(".playersList");
 const startBtn = document.querySelector(".start");
 const nextBtn = document.querySelector(".next");
 const frontFace = document.querySelector(".front");
@@ -38,9 +60,9 @@ let imposterNAME = [];
 let keyNAME;
 let counT = 1;
 
-// ========================
+// =================================
 // ألوان اللاعبين
-// ========================
+// =================================
 const colors = [
   "#ffff50ff",
   "#7aff52ff",
@@ -63,9 +85,9 @@ const colors = [
   "#9966CC",
 ];
 
-// ========================
+// =================================
 // حالة اللعبة (State)
-// ========================
+// =================================
 let namesOfplayers = JSON.parse(localStorage.getItem("NAMESp") || "[]");
 let impostersCount = 1; // عدد المحتالين المختار
 let imposters = []; // اندكسات المحتالين
@@ -74,21 +96,21 @@ let commonKey = ""; // الكلمة الموحدة (لغير المحتالين)
 let imposterValue = ""; // الكلمة الخاصة (للمحتالين)
 const gameBox = document.querySelector(".game-starter-box");
 
-// ========================
+// =================================
 // اختيار عدد المحتالين من الراديو
-// ========================
+// =================================
 document.querySelector(".count-imposter").addEventListener("change", () => {
   const value = document.querySelector('input[name="option"]:checked').value;
   impostersCount = +value;
   counT = +value;
 });
 
-// ========================
+// =================================
 // عرض اللاعبين في واجهة التعديل وواجهة العد
-// ========================
+// =================================
 function renderPlayers() {
   ul.innerHTML = "";
-  countPlayers.innerHTML = "إضافة لاعبين ➕";
+  playersList.innerHTML = "";
 
   namesOfplayers.forEach((name, i) => {
     ul.innerHTML += `
@@ -98,16 +120,16 @@ function renderPlayers() {
         <i class="fa-solid fa-times del" data-del="${i}"></i>
       </li>
     `;
-    countPlayers.innerHTML += `
+    playersList.innerHTML += `
       <li>${name} <i class="fa-solid fa-times fa-0 del" data-del="${i}"></i></li>
     `;
   });
 }
 renderPlayers();
 
-// ========================
+// =================================
 // إضافة لاعب
-// ========================
+// =================================
 addButton.onclick = function () {
   const name = playerTXT.value.trim();
   if (name) {
@@ -123,9 +145,9 @@ addButton.onclick = function () {
   playerTXT.focus();
 };
 
-// ========================
+// =================================
 // حذف وتحرير لاعب (تفويض أحداث)
-// ========================
+// =================================
 document.addEventListener("click", (e) => {
   // حذف
   const delIndex = e.target.getAttribute("data-del");
@@ -157,9 +179,9 @@ ul.addEventListener("input", (e) => {
   }
 });
 
-// ========================
+// =================================
 // أدوات مساعدة
-// ========================
+// =================================
 function uniqueRandomIndices(length, count) {
   const set = new Set();
   while (set.size < Math.min(count, length)) {
@@ -175,9 +197,9 @@ function pickRandomWordPair() {
   return {key, value};
 }
 
-// ========================
+// =================================
 // عرض اللاعب الحالي على الكرت
-// ========================
+// =================================
 function showPlayer(index) {
   const name = namesOfplayers[index];
   const color = colors[index % colors.length];
@@ -195,9 +217,9 @@ function showPlayer(index) {
   //   backFace.classList.toggle("imposter-card", isImposter);
 }
 
-// ========================
+// =================================
 // بدء اللعبة
-// ========================
+// =================================
 startBtn.onclick = function () {
   if (namesOfplayers.length < 3) {
     alert("لا يمكن بدأ اللعبة بأقل من 3 لاعبين!");
@@ -219,9 +241,9 @@ startBtn.onclick = function () {
   showPlayer(currentIndex);
 };
 
-// ========================
+// =================================
 // اللاعب التالي
-// ========================
+// =================================
 nextBtn.onclick = function () {
   currentIndex++;
   if (currentIndex < namesOfplayers.length) {
@@ -263,6 +285,4 @@ startingOver2.onclick = () => {
   location.reload();
 };
 
-document.querySelector(".closed").onclick = function () {
-  document.querySelector(".box").style.bottom = "-1000px";
-};
+

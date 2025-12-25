@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/6.6.6/css/flag-icons.min.css" />
+
+    <link
+      rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
     <link rel="stylesheet" href="style.css" />
     <script src="words.js" defer></script>
@@ -12,40 +16,74 @@
     <title>Who's? Imposter</title>
   </head>
   <body>
+    <!-- Start Header-->
     <div class="header" dir="ltr">
       <h2 class="logo">
         Who,s
         <span>imposter<i class="fa-solid fa-user-secret fa-sm"></i>?!</span>
       </h2>
+      <div class="head-icons">
+        <i class="fa-regular fa-circle-question fa-lg notes"></i>
+        <div class="mode">
+          <i class="fa-solid fa-sun sun"></i>
+          <i class="fa-solid fa-moon moon"></i>
+        </div>
+      </div>
     </div>
-    <main>
-      <section class="players">
-        <h4>اللاعبين <i class="fa-solid fa-users"></i></h4>
-        <ul class="count-players"></ul>
-      </section>
+    <!-- End Header-->
 
+    <!-- Start Main -->
+    <main>
+      <!-- Start Players -->
+      <section class="players">
+        <h3>اللاعبين <i class="fa-solid fa-users"></i></h3>
+        <h4 class="addPLAYERS"><i class="fa-solid fa-user-plus"></i> إضافة</h4>
+        <ul class="playersList"></ul>
+      </section>
+      <!-- End Players -->
+
+      <!-- Start Categories -->
+      <section class="categories">
+        <h3>الفئات <i class="fa-solid fa-icons"></i></h3>
+        <ul class="types">
+          <li>المأكولات العراقية <span class="flag fi fi-iq"></span></li>
+          <li>مأكولات عامة 🍕🍔</li>
+          <li>رياضة ⚽</li>
+          <li>حيوانات 🐎</li>
+          <li>منوعات 🃏🎲</li>
+          <li>الأشياء اليومية 🏡</li>
+          <li>الطقس والطبيعة 🍁</li>
+          <li>مشاهير 👩‍🎤👨‍🎤</li>
+          <li>المهن 👷‍♂️👨‍⚕️</li>
+          <li>براندات 👗⌚</li>
+        </ul>
+      </section>
+      <!-- End Categories -->
+
+      <!-- Start Imposter -->
       <section class="imposter">
-        <h4>المحتالين <i class="fa-solid fa-user-ninja"></i></h4>
+        <h3>المحتالين <i class="fa-solid fa-user-ninja"></i></h3>
         <form class="count-imposter">
           <label>
             <input type="radio" name="option" value="1" checked />
-            محتال 1
+            محتال1
           </label>
           <label>
             <input type="radio" name="option" value="2" />
-            محتال 2
+            محتال2
           </label>
           <label>
             <input type="radio" name="option" value="3" />
-            محتال 3
+            محتال3
           </label>
         </form>
+        <h4 class="start">
+          <i class="fa-solid fa-forward-step"></i>ابدأ اللعبة
+        </h4>
       </section>
+      <!-- End Imposter -->
 
-      <button class="start">
-        <span>ابدأ اللعبة<i class="fa-solid fa-caret-right"></i></span>
-      </button>
-
+      <!-- Start game box -->
       <div class="game-starter-box">
         <div class="flippedBox">
           <div class="front face">
@@ -57,31 +95,43 @@
           </div>
           <div class="back face"><h2></h2></div>
         </div>
-        <button class="next">
-          <i class="fas fa-forward-step"></i> اللاعب التالي
-        </button>
+        <h4 class="next">
+          <i class="fa-solid fa-forward-step"></i> اللاعب التالي
+        </h4>
       </div>
+      <!-- End game box -->
     </main>
+    <!-- End Main -->
+
+    <!-- Start Box -->
     <div class="box">
       <h3>تعديل اللاعبين</h3>
       <p>20-3 لاعب</p>
       <ul class="ul"></ul>
       <input class="playerTXT" type="text" placeholder="أضف اسم لاعب" />
-      <button class="addButton">تأكيد</button>
-      <i class="fa-regular fa-circle-check closed"></i>
+      <button class="addButton">تـأكيد</button>
+      <i class="fa-solid fa-circle-xmark closed"></i>
     </div>
+    <!-- End Box -->
+
+    <!-- Start Guessing Began -->
     <div class="guessing-began">
       <h2>بدأت اللعبة! حان وقت الأمساك بال Imposter.</h2>
       <h3><span class="startWith">kader</span> يبدأ المحادثة!</h3>
       <p class="disclosure">كشف ال Imposter والكلمة!</p>
       <a href="#" class="startingOver">البدأ من جديد</a>
     </div>
+    <!-- End Guessing Began -->
+
+    <!-- Start Data Disclosure-->
     <div class="dataDisclosure">
-      <h2>: Imposter is<br /><span class="impostername">Kader</span></h2>
+      <h2>: Imposter is</h2>
+      <h1 class="impostername">Kader</h1>
       <div class="line"></div>
-      <p>الكلمة :</p>
+      <h2>الكلمة :</h2>
       <h1>سمك مسكوف</h1>
       <a href="#" class="startingOver2">البدأ من جديد</a>
     </div>
+    <!-- End Data Disclosure-->
   </body>
 </html>

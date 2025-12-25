@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&display=swap");
 :root {
-  --bg: #123;
+  --bg: #131927;
   --text: #e5e7eb;
   --accent: #22c55e;
   --danger: #ef4444;
+  --bgBox: #141924;
+  --moon: #03a9f4;
+  --sun: #6e6e6e;
 }
 * {
   box-sizing: border-box;
@@ -14,85 +17,143 @@
 
 body {
   font-family: "Cairo", sans-serif;
-  height: 100vh;
+  min-height: 100vh;
   color: var(--text);
   background-color: var(--bg);
 }
+body.changeMode {
+  --bg: #f9fafb;
+  --text: #1f2937;
+  --accent: #16a34a;
+  --danger: #dc2626;
+  --bgBox: #9e9e9eff;
+  --moon: #6e6e6e;
+  --sun: #ffd700;
+}
 
+/* strat header */
 .header {
   position: fixed;
-  background-color: #111827d9;
+  width: 100%;
+  height: 60px;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--bgBox);
   border: 1px solid #ffffff0f;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  height: 120px;
-  border-radius: 0 0 20px 20px;
+  padding: 6px 12px;
   z-index: 1000;
 }
 .header .logo {
-  font-size: 34px;
+  flex: 60%;
+  font-size: 26px;
   font-weight: bold;
   color: var(--text);
-  cursor: pointer;
+  user-select: none;
 }
 .header .logo span {
   color: var(--danger);
 }
 
+.header .head-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+}
+
+.header .head-icons .mode {
+  position: relative;
+  border-radius: 50px;
+  border: 1px solid #6e6e6e;
+  width: 60px;
+  padding: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+.header .head-icons .mode .sun {
+  color: var(--sun);
+}
+.header .head-icons .mode .moon {
+  color: var(--moon);
+}
+.header .head-icons > i {
+  margin: 0 2px;
+  cursor: pointer;
+  line-height: 50px;
+  color: #d1d1d1;
+  font-size: 22px;
+}
+/* end header */
+
+/* start main */
 main {
   position: relative;
   width: 100%;
-  height: 100%;
-  padding: 12px;
-  padding-top: 85px;
+  height: 100vh;
   color: var(--text);
   background-color: var(--bg);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  padding: 120px 10px 50px;
   overflow: hidden;
 }
+/* end main */
 
+/* start players */
 .players,
-.imposter {
+.imposter,
+.categories {
+  position: relative;
   width: 95%;
-  max-width: 400px;
-  min-height: 100px;
-  background: #111827d9;
+  background: var(--bgBox);
   border: 1px solid #ffffff0f;
-  border-radius: 20px;
-  backdrop-filter: blur(6px);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  padding: 15px;
-  margin: 0 auto 30px;
-  text-align: right;
-  cursor: pointer;
+  padding: 10px;
 }
-.players:hover,
-.imposter:hover {
-  background: var(--bg);
+.players {
+  min-height: 100px;
+  margin: 0 auto 20px;
+  border-radius: 12px 0 12px 12px;
 }
-.players > h4,
-.imposter > h4 {
-  margin-bottom: 20px;
-  font-size: 24px;
-  font-weight: 500;
+.players h3 {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  font-size: 20px;
+  font-weight: bold;
 }
-.players > h4 i {
+.players h3 i {
   font-size: 18px;
   color: var(--accent);
 }
-.imposter > h4 i {
-  font-size: 20px;
-  color: var(--danger);
+.players h4 {
+  position: absolute;
+  bottom: -55px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 130px;
+  font-size: 18px;
+  height: 36px;
+  line-height: 28px;
+  text-align: center;
+  border: 2px solid var(--text);
+  border-radius: 6px;
+  padding: 4px;
+  font-weight: bold;
+  cursor: pointer;
 }
-.players .count-players {
+.players h4 > i {
+  color: var(--accent);
+}
+.players h4:hover {
+  border-color: transparent;
+}
+.players .playersList {
   width: 100%;
   list-style: none;
   display: flex;
@@ -100,79 +161,147 @@ main {
   flex-wrap: wrap;
   gap: 6px;
 }
-.players .count-players li {
+
+.players .playersList li {
   font-size: 16px;
   font-weight: bold;
   line-height: 1.3;
-  background-color: #010010;
+  background-color: #111;
+  color: #fff;
   height: 30px;
-  padding: 4px 8px;
-  border-radius: 10px;
+  padding: 4px;
+  border-radius: 6px;
 }
-.players .count-players li > i {
+.players .playersList li > i {
+  color: #dd0000;
+  font-weight: bold;
+  cursor: pointer;
+}
+/* end players */
+
+/* start categories */
+.categories {
+  position: relative;
+  min-height: 100px;
+  margin: 100px auto 20px;
+  border-radius: 12px 0 12px 12px;
+}
+.categories h3 {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+.categories h3 i {
+  font-size: 20px;
+  color: #ffd700;
+}
+.categories .types {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.categories .types li {
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.3;
+  background-color: #111;
+  color: #fff;
+  height: 30px;
+  padding: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+/* end categories */
+
+/* start imposter */
+.imposter {
+  position: relative;
+  height: 50px;
+  margin: 60px auto 20px;
+  border-radius: 12px 0 12px 12px;
+}
+.imposter h3 {
+  position: absolute;
+  top: -40px;
+  right: 0;
+  font-size: 20px;
+  font-weight: bold;
+}
+.imposter > h3 i {
+  font-size: 20px;
   color: var(--danger);
 }
-.imposter .count-imposter {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  font-weight: bold;
-  gap: 10px;
-}
 
-.start {
-  width: 90%;
-  max-width: 400px;
-  height: 50px;
-  background: #111827d9;
-  border: 1px solid #ffffff0f;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  direction: ltr;
+.imposter .count-imposter {
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
 }
-.start span {
-  color: var(--text);
-  font-weight: 600;
-  font-size: 22px;
+.imposter .count-imposter label {
+  margin: 0 5px;
+}
+.imposter .count-imposter label input[type="radio"] {
+  transform: scale(1.4);
+  margin-left: 4px;
+  cursor: pointer;
+  accent-color: var(--danger);
+}
+.imposter .start {
+  position: absolute;
+  bottom: -70px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: fit-content;
+  height: fit-content;
+  font-size: 18px;
+  padding: 4px 8px;
+  border: 2px solid var(--text);
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.imposter .start > i {
+  color: var(--accent);
 }
 .start:hover {
-  background-color: var(--bg);
+  border-color: transparent;
 }
+/* end imposter */
 
+/* start box */
 .box {
   position: fixed;
   bottom: -1000px;
   left: 0;
   width: 100%;
-  min-height: 50%;
+  min-height: 40%;
   background-color: #fff4f4;
   border: 1px solid var(--bg);
-  color: #222;
+  color: #000;
   text-align: center;
   padding: 20px 0;
-  border-radius: 30px 30px 0 0;
+  border-radius: 10px 10px 0 0;
 }
 .box .closed {
   position: absolute;
-  top: 10px;
-  right: 20px;
+  top: 8px;
+  right: 5px;
   cursor: pointer;
   font-weight: bolder;
   font-size: 28px;
-  color: var(--accent);
+  color: var(--danger);
 }
 .box h3 {
-  margin: 10px auto 0;
   font-size: 24px;
 }
 
 .box p {
-  margin: 10px auto;
+  margin-bottom: 10px;
   font-size: 16px;
   margin-top: 0;
   font-weight: bold;
@@ -185,8 +314,8 @@ main {
   background-color: #bbbbbb;
   padding: 20px;
   margin-bottom: 20px;
-  max-height: 200px;
-  overflow-y: auto;
+  height: 150px;
+  overflow-y: scroll;
 }
 *::-webkit-scrollbar {
   display: none;
@@ -237,31 +366,36 @@ main {
   font-size: 18px;
 }
 .playerTXT {
-  position: relative;
-  width: 80%;
+  width: 70%;
   padding: 10px;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: bold;
-  color: #222;
-  border: 2px solid var(--accent);
+  color: #111;
+  border: 3px solid var(--accent);
   border-radius: 16px;
-  margin-bottom: 15px;
+  margin: 15px auto;
+  display: block;
 }
 .addButton {
-  width: 80%;
-  padding: 10px;
-  background-color: var(--bg);
-  color: white;
-  font-size: 20px;
-  border: 2px solid #fcfcfc;
+  width: 30%;
+  height: 40px;
+  padding: 6px 8px;
+  background-color: var(--accent);
+  color: #222;
+  font-size: 24px;
+  font-weight: bold;
+  border: 2px solid #818181;
   border-radius: 16px;
-  font-weight: 500;
+  margin: 0 auto;
   cursor: pointer;
+  display: block;
 }
 .addButton:hover {
-  background-color: #111;
+  background-color: #009737;
 }
+/* end box */
 
+/* staet game starter box */
 .game-starter-box,
 .guessing-began,
 .dataDisclosure {
@@ -269,11 +403,10 @@ main {
   text-align: center;
   width: 100%;
   height: 100%;
-  padding: 15px;
   top: 0;
   right: 0;
-  background-color: #123;
-  color: #fff;
+  background-color: var(--bg);
+  color: var(--text);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -288,8 +421,8 @@ main {
 
 .game-starter-box .flippedBox {
   position: relative;
-  width: 280px;
-  height: 330px;
+  width: 250px;
+  height: 350px;
   margin-bottom: 30px;
   border-radius: 12px;
   color: #000;
@@ -308,15 +441,14 @@ main {
   position: absolute;
   width: 100%;
   height: 100%;
+  padding: 15px 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   cursor: pointer;
   backface-visibility: hidden;
 }
 .flippedBox .front h1 {
-  margin: 80px 0;
+  margin: auto 0;
   user-select: none;
 }
 .flippedBox .front .note i {
@@ -324,49 +456,52 @@ main {
 }
 .flippedBox .front .note p {
   color: #222;
-  margin-top: 10px;
   font-weight: bold;
   font-size: 14px;
   user-select: none;
 }
 .flippedBox .back h2 {
-  color: #000;
-  user-select: none;
-  font-weight: bold;
-  border: 2px solid #111;
+  background-color: var(--bg);
+  color: var(--text);
   padding: 4px;
-  border-radius: 10px;
-  width: 90%;
-  margin: 0 auto;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.8);
+  width: 100%;
+  margin: auto;
+  user-select: none;
 }
-.game-starter-box .next {
-  min-width: 150px;
-  height: 50px;
-  border-radius: 12px;
+.next {
+  width: fit-content;
+  height: fit-content;
   font-size: 18px;
+  text-align: center;
+  border: 2px solid var(--text);
+  border-radius: 6px;
+  padding: 4px 16px;
   font-weight: bold;
-  color: #fff;
-  background-color: #000;
-  border: #fff 1px solid;
   cursor: pointer;
 }
+.next > i {
+  color: var(--accent);
+}
+.next:hover {
+  border-color: transparent;
+}
+/* staet game starter box */
 
+/* start guessing began */
 .guessing-began {
-  color: #fff;
+  color: var(--text);
   padding: 12px;
+  gap: 50px;
 }
 .guessing-began h2 {
   line-height: 1.5;
-  margin-bottom: 20px;
 }
 .guessing-began h3 {
   font-size: 18px;
-  margin-bottom: 20px;
 }
 .guessing-began h3 span {
   background-color: var(--accent);
-  color: #111;
+  color: var(--bg);
   padding: 0 6px;
   border-radius: 4px;
   font-weight: bold;
@@ -378,12 +513,14 @@ main {
   border-radius: 18px;
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 20px;
   cursor: pointer;
 }
+/* end guessing began */
+
+/* start starting over */
 .startingOver,
 .startingOver2 {
-  color: #6d6d6d;
+  color: #4e4e4e;
   font-size: 20px;
   font-weight: bold;
   cursor: pointer;
@@ -394,34 +531,30 @@ main {
   border-radius: 8px;
   background-color: #fff;
 }
-
-.dataDisclosure {
-  color: #fff;
+.startingOver2 {
+  margin-top: 30px;
 }
-.dataDisclosure .line {
-  background-color: #777;
-  width: 250px;
-  height: 2px;
-  margin-bottom: 20px;
+/* start starting over */
+
+/* start data disclosure */
+.dataDisclosure {
+  color: var(--text);
+  gap: 10px;
 }
 
 .dataDisclosure h2 {
-  margin-bottom: 20px;
+  color: var(--text);
   font-size: 30px;
-  line-height: 2.4;
-}
-.dataDisclosure h2 span {
-  background-color: var(--accent);
-  color: #111;
-  font-size: 22px;
-  padding: 2px 6px;
-  border-radius: 4px;
-  font-weight: bold;
-}
-.dataDisclosure p {
-  font-size: 20px;
-  font-weight: bold;
 }
 .dataDisclosure h1 {
-  margin-bottom: 20px;
+  color: var(--text);
+  font-weight: bold;
 }
+
+.dataDisclosure .line {
+  background-color: #777;
+  width: 80%;
+  height: 2px;
+  margin: 30px auto;
+}
+/* end data disclosure */
