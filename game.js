@@ -28,6 +28,14 @@ document.querySelector(".closed").onclick = function () {
   document.querySelector(".box").style.bottom = "-1000px";
 };
 
+// show Note
+document.querySelector(".notes").onclick = () => {
+  document.querySelector(".showNotes").style.bottom = "0";
+};
+document.querySelector(".closNote").onclick = () => {
+  document.querySelector(".showNotes").style.bottom = "-1000px";
+};
+
 // // =================================
 // // UI: قلب الكرت باللمس (اضغط واستمر)
 // // =================================
@@ -284,5 +292,3 @@ startingOver.onclick = () => {
 startingOver2.onclick = () => {
   location.reload();
 };
-
-
