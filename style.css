@@ -592,6 +592,7 @@ main {
 }
 .noteText {
   margin-top: 10px;
+  list-style: none;
 }
 .noteText li {
   font-weight: 700;
@@ -619,7 +620,7 @@ main {
   text-decoration: none;
   border-radius: 8px;
 }
-.showNotes .contactMe li a:hover{
+.showNotes .contactMe li a:hover {
   background-color: var(--bgBox);
   transform: translateY(-10px);
 }
@@ -628,7 +629,7 @@ main {
   font-weight: bold;
 }
 
-.showNotes p{
+.showNotes p {
   margin-top: 15px;
   text-align: center;
   color: #999;
