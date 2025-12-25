@@ -21,7 +21,7 @@ document.querySelector(".mode").addEventListener("click", function () {
 // =================================
 // UI: عرض وإخفاء صندوق تعديل اللاعبين
 // =================================
-document.querySelector(".players").onclick = function () {
+document.querySelector(".addPLAYERS").onclick = function () {
   document.querySelector(".box").style.bottom = "0";
 };
 document.querySelector(".closed").onclick = function () {
@@ -264,7 +264,7 @@ nextBtn.onclick = function () {
 disclosure.onclick = () => {
   guessingBegan.classList.remove("go");
   document.querySelector(".dataDisclosure").classList.add("go");
-  document.querySelector(".dataDisclosure h1").textContent = keyNAME;
+  document.querySelector(".dataDisclosure .showWord").textContent = keyNAME;
   if (counT == 1) {
     document.querySelector(".impostername").textContent = imposterNAME[0];
   } else if (counT == 2) {

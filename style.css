@@ -279,10 +279,10 @@ main {
   bottom: -1000px;
   left: 0;
   width: 100%;
-  min-height: 40%;
-  background-color: #fff4f4;
+  height: 50%;
+  background-color: var(--text);
   border: 1px solid var(--bg);
-  color: #000;
+  color: var(--bg);
   text-align: center;
   padding: 20px 0;
   border-radius: 10px 10px 0 0;
@@ -340,19 +340,19 @@ main {
 
 .box ul li .player {
   background: transparent;
-  border: none;
-  font-size: 18px;
-  font-weight: 500;
-  padding: 10px 30px 10px 10px;
-  outline: none;
   color: #000;
+  border: none;
+  font-size: 20px;
+  font-weight: bold;
+  padding: 10px;
+  padding-right: 30px;
+  outline: none;
 }
 
 .box ul li i {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 20px;
   font-weight: bold;
   cursor: pointer;
 }
@@ -363,35 +363,32 @@ main {
 .box ul li i.edit {
   color: #555;
   right: 5px;
-  font-size: 18px;
+  font-size: 16px;
 }
 .playerTXT {
+  display: block;
   width: 70%;
   padding: 10px;
   font-size: 18px;
   font-weight: bold;
   color: #111;
   border: 3px solid var(--accent);
-  border-radius: 16px;
+  border-radius: 12px;
   margin: 15px auto;
-  display: block;
 }
 .addButton {
-  width: 30%;
-  height: 40px;
-  padding: 6px 8px;
-  background-color: var(--accent);
-  color: #222;
+  display: block;
+  width: 70%;
+  height: fit-content;
+  padding: 5px 0 2px;
+  background-color: var(--bg);
+  color: var(--text);
   font-size: 24px;
   font-weight: bold;
-  border: 2px solid #818181;
-  border-radius: 16px;
+  border: 2px solid var(--accent);
+  border-radius: 12px;
   margin: 0 auto;
   cursor: pointer;
-  display: block;
-}
-.addButton:hover {
-  background-color: #009737;
 }
 /* end box */
 
