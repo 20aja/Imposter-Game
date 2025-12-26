@@ -150,6 +150,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--accent);
   cursor: pointer;
 }
 .players h4 > i {
@@ -225,7 +226,7 @@ main {
 }
 
 .categories .types li {
-  font-size: 12px;
+  font-size: 16px;
   font-weight: bold;
   line-height: 1.4;
   background: linear-gradient(135deg, #222, #111);
@@ -310,7 +311,8 @@ main {
   cursor: pointer;
   accent-color: var(--danger);
 }
-.imposter .start {
+.imposter .start,
+.imposter .hint {
   position: absolute;
   bottom: -55px;
   left: 90%;
@@ -325,36 +327,29 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--moon);
   cursor: pointer;
 }
 .imposter .start > i {
-  color: var(--danger);
+  color: var(--moon);
   margin-left: 6px;
 }
 .imposter .start:hover {
   background-color: #111;
 }
 .imposter .hint {
-  position: absolute;
-  bottom: -55px;
   left: 10%;
   transform: translateX(-10%);
-  width: 40%;
-  height: 40px;
-  background-color: #123;
-  color: #fff;
-  font-size: 18px;
-  border-radius: 6px;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+  border: 2px solid var(--accent);
 }
-.imposter .hint i{
+.imposter .hint i {
   color: var(--accent);
+  font-weight: bold;
 }
-.imposter .hint.check i{
+.imposter .hint.check {
+  border: 2px solid var(--danger);
+}
+.imposter .hint.check i {
   color: var(--danger);
 }
 /* end imposter */
@@ -373,15 +368,7 @@ main {
   padding: 20px 0;
   border-radius: 10px 10px 0 0;
 }
-.box .closed {
-  position: absolute;
-  top: 8px;
-  right: 5px;
-  cursor: pointer;
-  font-weight: bolder;
-  font-size: 28px;
-  color: var(--danger);
-}
+
 .box h3 {
   font-size: 24px;
 }
@@ -464,25 +451,33 @@ main {
   padding-left: 40px;
   font-size: 18px;
   font-weight: bold;
+  background-color: #c9c9c9;
   color: #111;
   border: 3px solid #ffd700;
   outline: none;
   border-radius: 16px;
 }
-.addButton {
+.addButton,
+.closed {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  left: 10px;
+  left: 50px;
   width: 35px;
   height: 35px;
   border-radius: 8px;
+  padding-top: 1px;
   background-color: #ffd700;
   border: 1px solid #f1f1f1;
-  color: #000;
+  color: #fff;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer;
+}
+.closed {
+  left: 10px;
+  background-color: var(--danger);
+  border: 1px solid #f1f1f1;
 }
 /* end box */
 
@@ -570,10 +565,11 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  border: 2px solid var(--moon);
   cursor: pointer;
 }
 .next > i {
-  color: #03a9f4;
+  color: var(--moon);
   margin-left: 6px;
 }
 .next:hover {
