@@ -1,4 +1,25 @@
 // =================================
+// UI:  الفئات
+// =================================
+const items = document.querySelectorAll(".types li");
+items.forEach((item) => {
+  item.addEventListener("click", () => {
+    item.classList.toggle("active"); // يضيف أو يزيل الكلاس active
+  });
+});
+
+const btn = document.getElementById("toggleBtn");
+const hiddenItems = document.querySelectorAll(".types .hidden");
+let expanded = false;
+btn.addEventListener("click", () => {
+  hiddenItems.forEach((item) => {
+    item.style.display = expanded ? "none" : "inline-block";
+  });
+  btn.textContent = expanded ? "المزيد" : "إخفاء";
+  expanded = !expanded;
+});
+
+// =================================
 // UI: تغيير المود
 // =================================
 let mode = localStorage.getItem("Mode") || "night";

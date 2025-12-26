@@ -182,39 +182,92 @@ main {
 /* start categories */
 .categories {
   position: relative;
+  width: 95%;
+  background: var(--bgBox);
+  border: 1px solid #ffffff0f;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  padding: 15px;
   min-height: 100px;
   margin: 100px auto 20px;
   border-radius: 12px 0 12px 12px;
 }
+
 .categories h3 {
   position: absolute;
   top: -40px;
   right: 0;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: bold;
-}
-.categories h3 i {
-  font-size: 20px;
   color: #ffd700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
+
+.categories h3 i {
+  font-size: 22px;
+}
+
 .categories .types {
   width: 100%;
   list-style: none;
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  padding: 0;
+  margin: 0;
 }
+
 .categories .types li {
   font-size: 15px;
   font-weight: bold;
-  line-height: 1.3;
-  background-color: #111;
+  line-height: 1.4;
+  background: linear-gradient(135deg, #222, #111);
   color: #fff;
-  height: 30px;
-  padding: 4px;
-  border-radius: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.categories .types li:hover {
+  background: linear-gradient(135deg, #444, #222);
+  transform: scale(1.05);
+}
+
+.types .hidden {
+  display: none;
+}
+
+#toggleBtn {
+  margin-top: 10px;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  background: #ffd700;
+  color: #111;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#toggleBtn:hover {
+  background: #ffcc00;
+}
+
+.types li.active {
+  background: #ffd700;
+  color: #111;
+  transform: scale(1.05);
+}
+.types li i {
+  margin-left: 6px;
+  color: #ffd700;
+  font-size: 16px;
+}
+.types li.active i {
+  color: #111;
 }
 /* end categories */
 
