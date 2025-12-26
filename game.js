@@ -1,10 +1,37 @@
 // =================================
+// UI:  شاشة البداية
+// =================================
+setTimeout(function () {
+  document.querySelector(".startScreen").style.opacity = "0";
+  setTimeout(function () {
+    document.querySelector(".startScreen").remove();
+  }, 1000);
+}, 3000);
+// =================================
 // UI:  الفئات
 // =================================
 const items = document.querySelectorAll(".types li");
-items.forEach((item) => {
+const savedActive = JSON.parse(localStorage.getItem("activeItems")) || [];
+savedActive.forEach((index) => {
+  if (items[index]) {
+    items[index].classList.add("active");
+  }
+});
+
+items.forEach((item, index) => {
   item.addEventListener("click", () => {
-    item.classList.toggle("active"); // يضيف أو يزيل الكلاس active
+    item.classList.toggle("active");
+
+    // تحديث قائمة العناصر المفعلة
+    const activeItems = [];
+    items.forEach((el, i) => {
+      if (el.classList.contains("active")) {
+        activeItems.push(i); // نخزن الفهرس (index) لكل عنصر مفعّل
+      }
+    });
+
+    // حفظها بالـ localStorage
+    localStorage.setItem("activeItems", JSON.stringify(activeItems));
   });
 });
 
@@ -82,6 +109,7 @@ const frontName = document.querySelector(".front h1");
 const backWord = document.querySelector(".back h2");
 const ul = document.querySelector(".ul");
 const guessingBegan = document.querySelector(".guessing-began");
+const dataDisclosure = document.querySelector(".dataDisclosure");
 const startingOver = document.querySelector(".startingOver");
 const startingOver2 = document.querySelector(".startingOver2");
 const disclosure = document.querySelector(".disclosure");
@@ -231,15 +259,38 @@ function pickRandomWordPair() {
 // =================================
 
 // حذف أو إضافة تلميح
-let hintCase = true;
-let iconCase = document.querySelector(".hint i");
-document.querySelector(".hint").onclick = function () {
-  document.querySelector(".hint").classList.toggle("check");
-  hintCase === true
-    ? iconCase.classList.add("fa-times")
-    : iconCase.classList.remove("fa-times");
-  hintCase === true ? (hintCase = false) : (hintCase = true);
-};
+
+const hintEl = document.querySelector(".hint");
+const iconEl = document.querySelector(".hint i");
+
+let hintCase = JSON.parse(localStorage.getItem("hintCase") ?? "true");
+
+function renderHintState() {
+  if (hintCase) {
+    hintEl.classList.remove("check");
+    iconEl.classList.add("fa-check");
+    iconEl.classList.remove("fa-times");
+  } else {
+    hintEl.classList.add("check");
+    iconEl.classList.remove("fa-check");
+    iconEl.classList.add("fa-times");
+  }
+}
+
+// 3) دالة حفظ الحالة
+function saveHintState() {
+  localStorage.setItem("hintCase", JSON.stringify(hintCase));
+}
+
+// 4) تطبيق الحالة عند التحميل
+renderHintState();
+
+// 5) التبديل عند النقر (flip) ثم العرض والحفظ
+hintEl.addEventListener("click", () => {
+  hintCase = !hintCase; // عكس الحالة
+  renderHintState(); // تحديث الواجهة
+  saveHintState(); // حفظ التخزين
+});
 
 function showPlayer(index) {
   const name = namesOfplayers[index];
@@ -319,9 +370,16 @@ disclosure.onclick = () => {
   }
 };
 
+// البدأ من جديد
 startingOver.onclick = () => {
-  location.reload();
+  dataDisclosure.classList.remove("go");
+  guessingBegan.classList.remove("go");
 };
 startingOver2.onclick = () => {
-  location.reload();
+  dataDisclosure.classList.remove("go");
+  guessingBegan.classList.remove("go");
 };
+
+// let test = document.querySelectorAll(".types li")
+// console.log(test);
+
