@@ -90,7 +90,7 @@ body.changeMode {
   margin: 0 2px;
   cursor: pointer;
   line-height: 50px;
-  color: #d1d1d1;
+  color: var(--text);
   font-size: 22px;
 }
 /* end header */
@@ -133,6 +133,7 @@ main {
 .players h3 i {
   font-size: 18px;
   color: var(--accent);
+  margin-right: 6px;
 }
 .players h4 {
   position: absolute;
@@ -153,6 +154,7 @@ main {
 }
 .players h4 > i {
   color: var(--accent);
+  margin-left: 6px;
 }
 .players h4:hover {
   background-color: #111;
@@ -311,9 +313,9 @@ main {
 .imposter .start {
   position: absolute;
   bottom: -55px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50%;
+  left: 90%;
+  transform: translateX(-90%);
+  width: 40%;
   height: 40px;
   background-color: #123;
   color: #fff;
@@ -326,10 +328,34 @@ main {
   cursor: pointer;
 }
 .imposter .start > i {
-  color: var(--accent);
+  color: var(--danger);
+  margin-left: 6px;
 }
 .imposter .start:hover {
   background-color: #111;
+}
+.imposter .hint {
+  position: absolute;
+  bottom: -55px;
+  left: 10%;
+  transform: translateX(-10%);
+  width: 40%;
+  height: 40px;
+  background-color: #123;
+  color: #fff;
+  font-size: 18px;
+  border-radius: 6px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.imposter .hint i{
+  color: var(--accent);
+}
+.imposter .hint.check i{
+  color: var(--danger);
 }
 /* end imposter */
 
@@ -547,7 +573,8 @@ main {
   cursor: pointer;
 }
 .next > i {
-  color: var(--accent);
+  color: #03a9f4;
+  margin-left: 6px;
 }
 .next:hover {
   background-color: #111;

@@ -229,6 +229,18 @@ function pickRandomWordPair() {
 // =================================
 // عرض اللاعب الحالي على الكرت
 // =================================
+
+// حذف أو إضافة تلميح
+let hintCase = true;
+let iconCase = document.querySelector(".hint i");
+document.querySelector(".hint").onclick = function () {
+  document.querySelector(".hint").classList.toggle("check");
+  hintCase === true
+    ? iconCase.classList.add("fa-times")
+    : iconCase.classList.remove("fa-times");
+  hintCase === true ? (hintCase = false) : (hintCase = true);
+};
+
 function showPlayer(index) {
   const name = namesOfplayers[index];
   const color = colors[index % colors.length];
@@ -239,7 +251,7 @@ function showPlayer(index) {
   // إذا اللاعب محتـال → يعرض كلمة Imposter فوق التلميح
   const isImposter = imposters.includes(index);
   backWord.textContent = isImposter
-    ? `أنت Imposter - ${imposterValue}`
+    ? `أنت Imposter - ${hintCase === true ? imposterValue : ""}`
     : commonKey;
 
   // تمييز بصري للمحتال
