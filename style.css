@@ -12,6 +12,9 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  user-select: none;
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
   transition: all 0.3s linear;
 }
 
@@ -96,6 +99,7 @@ body.changeMode {
 main {
   position: relative;
   width: 100%;
+  min-height: 100vh;
   color: var(--text);
   background-color: var(--bg);
   padding: 120px 10px 50px;
