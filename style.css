@@ -96,7 +96,6 @@ body.changeMode {
 main {
   position: relative;
   width: 100%;
-  height: 100vh;
   color: var(--text);
   background-color: var(--bg);
   padding: 120px 10px 50px;
@@ -136,22 +135,23 @@ main {
   bottom: -55px;
   left: 50%;
   transform: translateX(-50%);
-  width: 130px;
+  width: 50%;
+  height: 40px;
+  background-color: #123;
+  color: #fff;
   font-size: 18px;
-  height: 36px;
-  line-height: 28px;
-  text-align: center;
-  border: 2px solid var(--text);
   border-radius: 6px;
-  padding: 4px;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 .players h4 > i {
   color: var(--accent);
 }
 .players h4:hover {
-  border-color: transparent;
+  background-color: #111;
 }
 .players .playersList {
   width: 100%;
@@ -212,14 +212,14 @@ main {
   width: 100%;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 10px;
   padding: 0;
   margin: 0;
 }
 
 .categories .types li {
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
   line-height: 1.4;
   background: linear-gradient(135deg, #222, #111);
@@ -275,7 +275,7 @@ main {
 .imposter {
   position: relative;
   height: 50px;
-  margin: 60px auto 20px;
+  margin: 60px auto 40px;
   border-radius: 12px 0 12px 12px;
 }
 .imposter h3 {
@@ -306,23 +306,26 @@ main {
 }
 .imposter .start {
   position: absolute;
-  bottom: -70px;
+  bottom: -55px;
   left: 50%;
   transform: translateX(-50%);
-  width: fit-content;
-  height: fit-content;
+  width: 50%;
+  height: 40px;
+  background-color: #123;
+  color: #fff;
   font-size: 18px;
-  padding: 4px 8px;
-  border: 2px solid var(--text);
   border-radius: 6px;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 .imposter .start > i {
   color: var(--accent);
 }
-.start:hover {
-  border-color: transparent;
+.imposter .start:hover {
+  background-color: #111;
 }
 /* end imposter */
 
@@ -527,21 +530,23 @@ main {
   user-select: none;
 }
 .next {
-  width: fit-content;
-  height: fit-content;
+  width: 50%;
+  height: 40px;
+  background-color: #123;
+  color: #fff;
   font-size: 18px;
-  text-align: center;
-  border: 2px solid var(--text);
   border-radius: 6px;
-  padding: 4px 16px;
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
 }
 .next > i {
   color: var(--accent);
 }
 .next:hover {
-  border-color: transparent;
+  background-color: #111;
 }
 /* staet game starter box */
 
