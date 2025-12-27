@@ -136,7 +136,7 @@ body.changeMode {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 20;
+  z-index: 22;
 }
 .startScreen img {
   width: 100%;
