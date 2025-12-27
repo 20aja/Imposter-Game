@@ -7,6 +7,7 @@
   --bgBox: #141924;
   --moon: #03a9f4;
   --sun: #6e6e6e;
+  --bghead: hsla(221, 29%, 11%, 0.8);
 }
 * {
   box-sizing: border-box;
@@ -33,23 +34,26 @@ body.changeMode {
   --bgBox: #9e9e9eff;
   --moon: #6e6e6e;
   --sun: #ffd700;
+  --bghead: hsla(0, 0%, 62%, 0.8);
 }
 
 /* strat header */
 .header {
   position: fixed;
   width: 100%;
-  height: 60px;
+  height: calc(60px + env(safe-area-inset-top, 20px));
   top: 0;
   left: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: var(--bgBox);
+  background-color: var(--bghead);
   border: 1px solid #ffffff0f;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  padding: 6px 12px;
-  padding-top: env(safe-area-inset-top, 24px);
+  padding-top: calc(8px + env(safe-area-inset-top, 16px));
+  padding-bottom: calc(8px + env(safe-area-inset-top, 0));
+  padding-left: calc(12px + env(safe-area-inset-top, 0));
+  padding-right: calc(12px + env(safe-area-inset-top, 0));
   z-index: 20;
 }
 .header .logo {
@@ -148,12 +152,12 @@ body.changeMode {
 
 /* start main */
 main {
-  position: relative;
+  /* position: relative; */
   width: 100%;
-  min-height: 100vh;
+  height: 100%;
   color: var(--text);
   background-color: var(--bg);
-  padding: 120px 10px 50px;
+  padding: 130px 10px 50px;
   overflow: hidden;
 }
 /* end main */

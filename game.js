@@ -69,18 +69,18 @@ document.querySelector(".mode").addEventListener("click", function () {
 // UI: عرض وإخفاء صندوق تعديل اللاعبين
 // =================================
 document.querySelector(".addPLAYERS").onclick = function () {
-  document.querySelector(".box").classList.toggle("hidee")
+  document.querySelector(".box").classList.toggle("hidee");
 };
 document.querySelector(".closed").onclick = function () {
-  document.querySelector(".box").classList.remove("hidee")
+  document.querySelector(".box").classList.remove("hidee");
 };
 
 // show Note
 document.querySelector(".notes").onclick = () => {
-  document.querySelector(".showNotes").classList.toggle("hidee")
+  document.querySelector(".showNotes").classList.toggle("hidee");
 };
 document.querySelector(".closNote").onclick = () => {
-  document.querySelector(".showNotes").classList.remove("hidee")
+  document.querySelector(".showNotes").classList.remove("hidee");
 };
 
 // // =================================
@@ -447,3 +447,13 @@ startingOver2.onclick = () => {
   guessingBegan.classList.remove("go");
   startGame();
 };
+
+window.addEventListener("beforeunload", function (event) {
+  event.preventDefault();
+  event.returnValue = ""; // يظهر رسالة تأكيد عامة
+});
+
+// بديل لبعض المتصفحات على الجوال
+window.addEventListener("pagehide", function (event) {
+  this.alert("هل أنت متأكد من الخروج!")
+});
