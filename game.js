@@ -21,7 +21,6 @@ savedActive.forEach((index) => {
 items.forEach((item, index) => {
   item.addEventListener("click", () => {
     item.classList.toggle("active");
-
     // تحديث قائمة العناصر المفعلة
     const activeItems = [];
     items.forEach((el, i) => {
@@ -70,18 +69,18 @@ document.querySelector(".mode").addEventListener("click", function () {
 // UI: عرض وإخفاء صندوق تعديل اللاعبين
 // =================================
 document.querySelector(".addPLAYERS").onclick = function () {
-  document.querySelector(".box").style.bottom = "0";
+  document.querySelector(".box").classList.toggle("hidee")
 };
 document.querySelector(".closed").onclick = function () {
-  document.querySelector(".box").style.bottom = "-1000px";
+  document.querySelector(".box").classList.remove("hidee")
 };
 
 // show Note
 document.querySelector(".notes").onclick = () => {
-  document.querySelector(".showNotes").style.bottom = "0";
+  document.querySelector(".showNotes").classList.toggle("hidee")
 };
 document.querySelector(".closNote").onclick = () => {
-  document.querySelector(".showNotes").style.bottom = "-1000px";
+  document.querySelector(".showNotes").classList.remove("hidee")
 };
 
 // // =================================
@@ -142,6 +141,64 @@ const colors = [
   "#9966CC",
 ];
 
+// جلب الفئات المختارة من واجهة HTML
+function getSelectedCategories() {
+  let selected = [];
+  let test = document.querySelectorAll(".types li");
+
+  test.forEach(function (el) {
+    if (el.classList.contains("active")) {
+      let categoryName = el.getAttribute("data-category");
+      selected.push(categoryName);
+    }
+  });
+  return selected;
+}
+
+// بناء قائمة الكلمات والتلميحات من الفئات المختارة
+function getWordsFromSelected() {
+  let selectedCategories = getSelectedCategories();
+  let wordsPool = [];
+
+  selectedCategories.forEach((cat) => {
+    if (categoriesWords[cat]) {
+      categoriesWords[cat].words.forEach((word, i) => {
+        wordsPool.push({
+          word: word,
+          hint: categoriesWords[cat].hints[i],
+          category: cat,
+        });
+      });
+    }
+  });
+
+  return wordsPool;
+}
+
+// جلب كلمة عشوائية من الفئات المختارة
+function getRandomWord() {
+  let pool = getWordsFromSelected();
+  if (pool.length === 0) return null;
+  let randomIndex = Math.floor(Math.random() * pool.length);
+  return pool[randomIndex];
+}
+
+// تحديد الكلمة والتلميح
+let hint;
+let word;
+function startGame() {
+  let randomItem = getRandomWord();
+  if (randomItem) {
+    hint = randomItem.hint;
+    word = randomItem.word;
+  }
+}
+startGame();
+document.querySelectorAll(".types li").forEach((el) => {
+  el.addEventListener("click", () => {
+    startGame();
+  });
+});
 // =================================
 // حالة اللعبة (State)
 // =================================
@@ -259,7 +316,6 @@ function pickRandomWordPair() {
 // =================================
 
 // حذف أو إضافة تلميح
-
 const hintEl = document.querySelector(".hint");
 const iconEl = document.querySelector(".hint i");
 
@@ -302,8 +358,8 @@ function showPlayer(index) {
   // إذا اللاعب محتـال → يعرض كلمة Imposter فوق التلميح
   const isImposter = imposters.includes(index);
   backWord.textContent = isImposter
-    ? `أنت Imposter - ${hintCase === true ? imposterValue : ""}`
-    : commonKey;
+    ? `أنت Imposter - ${hintCase === true ? hint : ""}`
+    : word;
 
   // تمييز بصري للمحتال
   //   backFace.classList.toggle("imposter-card", isImposter);
@@ -312,17 +368,27 @@ function showPlayer(index) {
 // =================================
 // بدء اللعبة
 // =================================
+function errors(error) {
+  let interval = setInterval(function () {
+    document.querySelector(`.notifications${error}`).style.opacity = "1";
+    document.querySelector(`.notifications${error}`).style.zIndex = "1";
+  }, 100);
+  setTimeout(() => {
+    clearInterval(interval);
+    document.querySelector(`.notifications${error}`).style.opacity = "0";
+    document.querySelector(`.notifications${error}`).style.zIndex = "0";
+  }, 2000);
+}
+
 startBtn.onclick = function () {
   if (namesOfplayers.length < 3) {
-    alert("لا يمكن بدأ اللعبة بأقل من 3 لاعبين!");
+    errors(1);
     return;
   }
-
-  // اختيار كلمة موحدة وكلمة خاصة
-  const {key, value} = pickRandomWordPair();
-  commonKey = key;
-  imposterValue = value;
-  keyNAME = key;
+  if (getWordsFromSelected().length === 0) {
+    errors(2);
+    return;
+  }
 
   // اختيار المحتالين حسب العدد المختار بدون تكرار
   imposters = uniqueRandomIndices(namesOfplayers.length, impostersCount);
@@ -356,7 +422,7 @@ nextBtn.onclick = function () {
 disclosure.onclick = () => {
   guessingBegan.classList.remove("go");
   document.querySelector(".dataDisclosure").classList.add("go");
-  document.querySelector(".dataDisclosure .showWord").textContent = keyNAME;
+  document.querySelector(".dataDisclosure .showWord").textContent = word;
   if (counT == 1) {
     document.querySelector(".impostername").textContent = imposterNAME[0];
   } else if (counT == 2) {
@@ -374,12 +440,10 @@ disclosure.onclick = () => {
 startingOver.onclick = () => {
   dataDisclosure.classList.remove("go");
   guessingBegan.classList.remove("go");
+  startGame();
 };
 startingOver2.onclick = () => {
   dataDisclosure.classList.remove("go");
   guessingBegan.classList.remove("go");
+  startGame();
 };
-
-// let test = document.querySelectorAll(".types li")
-// console.log(test);
-

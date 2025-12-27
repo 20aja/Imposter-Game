@@ -19,6 +19,7 @@
 }
 
 body {
+  position: relative;
   font-family: "Cairo", sans-serif;
   min-height: 100vh;
   color: var(--text);
@@ -48,7 +49,7 @@ body.changeMode {
   border: 1px solid #ffffff0f;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   padding: 6px 12px;
-  z-index: 19;
+  z-index:20;
 }
 .header .logo {
   flex: 60%;
@@ -93,7 +94,38 @@ body.changeMode {
   color: var(--text);
   font-size: 22px;
 }
+.header .head-icons > i.hidee {
+  margin: 0 2px;
+  cursor: pointer;
+  line-height: 50px;
+  color: var(--text);
+  font-size: 22px;
+}
 /* end header */
+
+/* start notifications */
+.notifications1,
+.notifications2 {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 20%;
+  border-radius: 8px;
+  text-align: center;
+  background-color: rgb(255, 35, 35);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 0;
+  opacity: 0;
+}
+/* end notifications */
+
+/* start screen */
 .startScreen {
   position: fixed;
   width: 100%;
@@ -111,6 +143,8 @@ body.changeMode {
   height: 100%;
   object-fit: contain;
 }
+/* end screen */
+
 /* start main */
 main {
   position: relative;
@@ -371,6 +405,10 @@ main {
   text-align: center;
   padding: 20px 0;
   border-radius: 10px 10px 0 0;
+}
+.box.hidee{
+    bottom: 0;
+    opacity: 1;
 }
 
 .box h3 {
@@ -666,6 +704,11 @@ main {
   text-align: right;
   padding: 15px;
   border-radius: 10px 10px 0 0;
+  opacity: 0;
+}
+.showNotes.hidee{
+  bottom: 0;
+  opacity: 1;
 }
 .showNotes .head {
   display: flex;

@@ -16,6 +16,17 @@
     <title>Who's? Imposter</title>
   </head>
   <body>
+    <!-- Start Error -->
+    <div class="notifications1">
+      <h1>!! Error</h1>
+      <h2>لا يمكن بدأ اللعبة بأقل من 3 لاعبين!</h2>
+    </div>
+    <div class="notifications2">
+      <h1>!! Error</h1>
+      <h2>حدد فئة واحدة على الأقل!</h2>
+    </div>
+    <!-- Start Error -->
+
     <!-- start screen -->
     <div class="startScreen">
       <img src="start screen.jpeg" alt="" />
@@ -52,16 +63,36 @@
       <section class="categories">
         <h3>الفئات<i class="fa-solid fa-icons"></i></h3>
         <ul class="types">
-          <li><i class="fa-solid fa-pizza-slice"></i>مأكولات</li>
-          <li><i class="fa-solid fa-futbol"></i> رياضة</li>
-          <li class="hidden"><i class="fa-solid fa-dog"></i>حيوانات</li>
-          <li class="hidden"><i class="fa-solid fa-dice"></i> منوعات</li>
-          <li class="hidden"><i class="fa-solid fa-house"></i>أشياء يومية</li>
-          <li class="hidden"><i class="fa-solid fa-cloud-sun"></i>الطقس</li>
-          <li class="hidden"><i class="fa-solid fa-star"></i>مشاهير</li>
-          <li class="hidden"><i class="fa-solid fa-user-tie"></i>المهن</li>
-          <li class="hidden"><i class="fa-solid fa-shirt"></i>براندات</li>
-          <li class="hidden"><i class="fa-solid fa-landmark"></i>مدن وعواصم</li>
+          <li data-category="food">
+            <i class="fa-solid fa-pizza-slice"></i>مأكولات
+          </li>
+          <li data-category="sports">
+            <i class="fa-solid fa-futbol"></i> رياضة
+          </li>
+          <li class="hidden" data-category="animals">
+            <i class="fa-solid fa-dog"></i>حيوانات
+          </li>
+          <li class="hidden" data-category="things">
+            <i class="fa-solid fa-dice"></i> منوعات
+          </li>
+          <li class="hidden" data-category="daily">
+            <i class="fa-solid fa-house"></i>أشياء يومية
+          </li>
+          <li class="hidden" data-category="weather">
+            <i class="fa-solid fa-cloud-sun"></i>الطقس
+          </li>
+          <li class="hidden" data-category="celebrities">
+            <i class="fa-solid fa-star"></i>مشاهير
+          </li>
+          <li class="hidden" data-category="jobs">
+            <i class="fa-solid fa-user-tie"></i>المهن
+          </li>
+          <li class="hidden" data-category="brands">
+            <i class="fa-solid fa-shirt"></i>براندات
+          </li>
+          <li class="hidden" data-category="places">
+            <i class="fa-solid fa-landmark"></i>أماكن
+          </li>
         </ul>
         <button id="toggleBtn">المزيد</button>
       </section>
