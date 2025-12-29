@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/6.6.6/css/flag-icons.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="words.js" defer></script>
+    <script src="game.js" defer></script>
+    <title>Who's? Imposter</title>
+  </head>
+  <body>
+    <!-- start screen -->
+    <div class="startScreen">
+      <img src="start.png" alt="" />
+    </div>
+    <!-- end screen -->
+    <!-- Start Main -->
+    <div class="container">
+      <!-- Start Header-->
+      <div class="header" dir="ltr">
+        <h2 class="logo">
+          Who's imposter<i class="fa-solid fa-user-secret fa-sm"></i>?!
+        </h2>
+        <div class="head-icons">
+          <i class="fa-regular fa-circle-question fa-lg notes"></i>
+          <div class="mode">
+            <i class="fa-solid fa-sun sun"></i>
+            <i class="fa-solid fa-moon moon"></i>
+          </div>
+        </div>
+      </div>
+      <!-- End Header-->
+
+      <!-- Start Players -->
+      <div class="playersBox">
+        <h3>اللاعبين <i class="fa-solid fa-users"></i></h3>
+        <ul class="playersList"></ul>
+        <h4 class="addPLAYERS"><i class="fa-solid fa-user-plus"></i>إضافة</h4>
+      </div>
+      <!-- End Players -->
+
+      <!-- Start Categories -->
+      <div class="categoriesBox">
+        <h3>الفئات<i class="fa-solid fa-icons"></i></h3>
+        <ul class="types">
+          <li data-category="food">
+            <i class="fa-solid fa-pizza-slice"></i>مأكولات
+          </li>
+          <li data-category="sports">
+            <i class="fa-solid fa-futbol"></i> رياضة
+          </li>
+          <li class="hidden" data-category="animals">
+            <i class="fa-solid fa-dog"></i>حيوانات
+          </li>
+          <li class="hidden" data-category="things">
+            <i class="fa-solid fa-dice"></i> منوعات
+          </li>
+          <li class="hidden" data-category="daily">
+            <i class="fa-solid fa-house"></i>أشياء يومية
+          </li>
+          <li class="hidden" data-category="weather">
+            <i class="fa-solid fa-cloud-sun"></i>الطقس
+          </li>
+          <li class="hidden" data-category="celebrities">
+            <i class="fa-solid fa-star"></i>مشاهير
+          </li>
+          <li class="hidden" data-category="jobs">
+            <i class="fa-solid fa-user-tie"></i>المهن
+          </li>
+          <li class="hidden" data-category="brands">
+            <i class="fa-solid fa-shirt"></i>براندات
+          </li>
+          <li class="hidden" data-category="places">
+            <i class="fa-solid fa-landmark"></i>أماكن
+          </li>
+        </ul>
+        <h4 id="toggleBtn">المزيد</h4>
+      </div>
+
+      <!-- End Categories -->
+
+      <!-- Start Imposter -->
+      <div class="imposterBox">
+        <h3>المحتالين <i class="fa-solid fa-user-ninja"></i></h3>
+        <form class="count-imposter">
+          <label>
+            <input type="radio" name="option" value="1" checked />
+            محتال1
+          </label>
+          <label>
+            <input type="radio" name="option" value="2" />
+            محتال2
+          </label>
+          <label>
+            <input type="radio" name="option" value="3" />
+            محتال3
+          </label>
+        </form>
+        <div class="imposterButtons">
+          <button class="start">
+            <i class="fa-solid fa-forward-step"></i>ابدأ اللعبة
+          </button>
+          <button class="hint">تلميح <i class="fa-solid fa-check"></i></button>
+        </div>
+      </div>
+      <!-- End Imposter -->
+    </div>
+    <!-- End Main -->
+
+    <!-- Start game box -->
+    <div class="game-starter-box">
+      <div class="flippedBox">
+        <div class="front face">
+          <h1></h1>
+          <div class="note">
+            <i class="fas fa-hand-pointer fa-2x"></i>
+            <p>أَضغط مع الأستمرار للكشف</p>
+          </div>
+        </div>
+        <div class="back face"><h2></h2></div>
+      </div>
+      <h4 class="next">
+        <i class="fa-solid fa-forward-step"></i>اللاعب التالي
+      </h4>
+    </div>
+    <!-- End game box -->
+
+    <!-- Start Box -->
+    <div class="box">
+      <h3>تعديل اللاعبين</h3>
+      <p>20-3 لاعب</p>
+      <ul class="ul"></ul>
+      <div class="dmg">
+        <input class="playerTXT" type="text" placeholder="أضف اسم لاعب" />
+        <button class="addButton"><i class="fas fa-plus"></i></button>
+        <button class="closed"><i class="fa-solid fa-times"></i></button>
+      </div>
+    </div>
+    <!-- End Box -->
+
+    <!-- Start Guessing Began -->
+    <div class="guessing-began">
+      <h2>بدأت اللعبة! حان وقت الأمساك بال Imposter.</h2>
+      <h3><span class="startWith">kader</span> يبدأ المحادثة ...<i class="fa-solid fa-microphone fa-lg"></i></h3>
+      <p class="disclosure">كشف ال Imposter والكلمة!</p>
+      <a href="#" class="startingOver">البدأ من جديد <i class="fa-solid fa-house"></i></a>
+    </div>
+    <!-- End Guessing Began -->
+
+    <!-- Start Data Disclosure-->
+    <div class="dataDisclosure">
+      <h2>: Imposter is</h2>
+      <h1 class="impostername">Kader</h1>
+      <div class="line"></div>
+      <h2>الكلمة :</h2>
+      <h1 class="showWord"></h1>
+      <a href="#" class="startingOver2">البدأ من جديد</a>
+    </div>
+    <!-- End Data Disclosure-->
+
+    <!-- show notes -->
+    <div class="showNotes">
+      <div class="head">
+        <h2>طريقة اللعب</h2>
+        <i class="fa-solid fa-times fa-lg closNote"></i>
+      </div>
+      <ul class="noteText">
+        <li><strong>1.</strong> اجمع 3 إلى 20 صديق ومرر الهاتف بينهم.</li>
+        <li>
+          <strong>2.</strong> كل لاعب يسحب لرؤية الكلمة السرية – ما عدا شخص
+          واحد، سيرى "Imposter + تلميح".
+        </li>
+        <li><strong>3.</strong> يقول كل لاعب كلمة مرتبطة بالكلمة السرية.</li>
+        <li>
+          <strong>4.</strong> يجب على الـ Imposter التظاهر والمعرفة ومحاولة
+          الاندماج بدون معرفة الكلمة.
+        </li>
+        <li>
+          <strong>5.</strong> استمروا بإعطاء التلميحات والتحدث حتى يعتقد أحدكم
+          أنه اكتشف الـ Imposter.
+        </li>
+        <li>
+          <strong>6.</strong> عندما تكونون مستعدين، صوتوا على من تظنون أنه الـ
+          Imposter – ثم اضغطوا للكشف عن الحقيقة!
+        </li>
+      </ul>
+      <ul class="contactMe">
+        <li>
+          <a
+            href="https://www.facebook.com/share/14PbS1qGt4c/"
+            target="_blank"
+            style="color: #4267b2">
+            <i class="fab fa-facebook"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://github.com/20aja"
+            target="_blank"
+            style="color: #000000">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+        <li>
+          <a href="https://t.me/aja2919" target="_blank" style="color: #0088cc">
+            <i class="fab fa-telegram"></i>
+          </a>
+        </li>
+        <li>
+          <a
+            href="https://www.instagram.com/2a.j.a"
+            target="_blank"
+            style="color: #e1306c">
+            <i class="fab fa-instagram"></i>
+          </a>
+        </li>
+      </ul>
+      <p><strong>Done by abdulkahderj@gmail.com</strong></p>
+    </div>
+    <!-- end notes-->
+
+    <!-- Start Error -->
+    <div class="error-box1">
+      <h1>!!...Error</h1>
+      <h2>لا يمكن بدأ اللعبة بأقل من 3 لاعبين!</h2>
+    </div>
+    <div class="error-box2">
+      <h1>!!...Error</h1>
+      <h2>حدد فئة واحدة على الأقل!</h2>
+    </div>
+    <!-- End Error -->
+  </body>
+</html>
