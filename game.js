@@ -446,11 +446,7 @@ function delAllfunction() {
   let delPrompt = confirm("هل أنت متأكد من حذف جميع البيانات؟!");
   if (delPrompt) {
     localStorage.clear();
-    items.forEach((el) => {
-      el.classList.remove("active");
-    });
-    playersList.innerHTML = "";
-    ul.innerHTML = "";
+    location.reload();
   }
 }
 document.querySelector(".delAll").onclick = () => {
