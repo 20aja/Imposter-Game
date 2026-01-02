@@ -431,10 +431,30 @@ disclosure.onclick = () => {
 startingOver.onclick = () => {
   dataDisclosure.classList.remove("go");
   guessingBegan.classList.remove("goGuessing");
+  imposterNAME = [];
   startGame();
 };
 startingOver2.onclick = () => {
   dataDisclosure.classList.remove("go");
   guessingBegan.classList.remove("goGuessing");
   startGame();
+  imposterNAME = [];
+};
+
+// delete all
+function delAllfunction() {
+  let delPrompt = confirm("هل أنت متأكد من حذف جميع البيانات؟!");
+  if (delPrompt) {
+    localStorage.clear();
+    items.forEach((el) => {
+      el.classList.remove("active");
+    });
+    playersList.innerHTML = "";
+    ul.innerHTML = "";
+  }
+}
+document.querySelector(".delAll").onclick = () => {
+  if (localStorage.length > 0) {
+    delAllfunction();
+  }
 };

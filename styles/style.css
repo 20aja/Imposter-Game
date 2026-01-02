@@ -77,7 +77,7 @@ body.changeMode {
   align-items: center;
   justify-content: center;
   background-color: var(--bgBox);
-  border-bottom: 3px solid var(--text);
+  border-bottom: 2px solid #c7c7c7;
   padding-top: calc(env(safe-area-inset-top) + 8px);
   z-index: 20;
 }
@@ -109,7 +109,7 @@ h2.logo i {
   border-radius: 50px;
   border: 1px solid #6e6e6e;
   width: 60px;
-  padding: 4px;
+  padding: 4px 6px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -123,10 +123,10 @@ h2.logo i {
   color: var(--moon);
 }
 .header .head-icons > i {
-  margin: 0 2px;
+  margin: 0 4px;
   cursor: pointer;
   line-height: 50px;
-  color: var(--text);
+  color: #d4d4d4c5;
   font-size: 22px;
 }
 .header .head-icons > i.hidee {
@@ -146,7 +146,7 @@ h2.logo i {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  margin: 10px auto;
+  margin: 5px auto;
 }
 .playersList {
   width: 100%;
@@ -154,19 +154,19 @@ h2.logo i {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  background: var(--bgBox);
+  background: var(--bg);
   border: 1px solid #ffffff0f;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   padding: 10px;
-  margin: 5px auto 15px;
-  border-radius: 12px 0 12px 12px;
+  margin: 3px auto;
+  border-radius: 0 0 12px 12px;
 }
 .playersList li {
   font-size: 16px;
   font-weight: bold;
   line-height: 1.3;
-  background-color: #111;
-  color: #fff;
+  background-color: var(--bgBox);
+  color: var(--text);
   height: 30px;
   padding: 4px 6px;
   border-radius: 6px;
@@ -181,35 +181,32 @@ h2.logo i {
 .imposterBox h3 {
   font-size: 20px;
   font-weight: bold;
+  width: 100%;
+  text-align: center;
+  background: var(--bg);
+  border: 1px solid #ffffff0f;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border-radius: 12px 12px 0 0;
 }
 .playersBox h3 i {
   font-size: 18px;
   color: var(--accent);
-  margin-right: 4px;
 }
 .playersBox h4 {
   width: 50%;
   height: 40px;
-  background-color: #123;
-  color: #fff;
+  background-color: var(--accent);
+  color: #111;
   font-size: 18px;
-  border-radius: 6px;
+  border-radius: 0 0 12px 12px;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--accent);
+  border: 2px solid #c7c7c7;
   margin: 0 auto 20px;
   cursor: pointer;
 }
-.playersBox h4 > i {
-  color: var(--accent);
-  margin-left: 6px;
-}
-.playersBox h4:hover {
-  background-color: #111;
-}
-
 /* end players */
 
 /* start categories */
@@ -218,24 +215,27 @@ h2.logo i {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
   gap: 10px;
-  background: var(--bgBox);
+  background: transparent;
   border: 1px solid #ffffff0f;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-  margin: 5px auto 15px;
+  margin: 3px auto ;
   padding: 15px;
-  border-radius: 12px 0 12px 12px;
+  border-radius: 0 0 12px 12px;
 }
 .categoriesBox .types li {
   font-size: 16px;
   font-weight: bold;
   line-height: 1.4;
-  background: linear-gradient(135deg, #222, #111);
-  color: #fff;
+  background: linear-gradient(135deg, var(--bg), var(--bgBox));
+  color: var(--text);
   padding: 6px 10px;
   border-radius: 8px;
   transition: all 0.3s ease;
   text-align: right;
   cursor: pointer;
+}
+.categoriesBox .types li i{
+  margin-left: 8px;
 }
 .types .hidden {
   display: none;
@@ -254,16 +254,15 @@ h2.logo i {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid var(--text);
+  border: 2px solid  #c7c7c7;
   margin: 0 auto 20px;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: 0 0 12px 12px;
   background: #ffd700;
   color: #111;
   transition: 0.3s;
 }
 .types li i {
-  margin-left: 6px;
   color: #ffd700;
   font-size: 18px;
 }
@@ -280,8 +279,7 @@ h2.logo i {
 
 /* start imposter */
 .imposterBox h3 i {
-  font-size: 22px;
-  margin-right: 2px;
+  font-size: 24px;
   color: var(--danger);
 }
 
@@ -289,12 +287,12 @@ h2.logo i {
   width: 100%;
   min-height: 50px;
   text-align: center;
-  background: var(--bgBox);
+  background: transparent;
   border: 1px solid #ffffff0f;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   margin: 5px auto 20px;
   padding: 15px;
-  border-radius: 12px 0 12px 12px;
+  border-radius: 0 0 12px 12px;
 }
 
 .imposterBox .count-imposter label {
@@ -311,12 +309,18 @@ h2.logo i {
 .imposterBox .imposterButtons {
   width: 100%;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  margin: 0 auto 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 auto 10px;
+  background-color: var(--bgBox);
+  padding: 20px;
+  border-radius: 8px;
 }
-.imposterBox .imposterButtons button {
-  width: 40%;
+.imposterBox .imposterButtons .start,
+.imposterBox .imposterButtons .hint,
+.imposterBox .imposterButtons .delAll {
+  flex: 40%;
   height: fit-content;
   background-color: #123;
   color: #fff;
@@ -330,17 +334,15 @@ h2.logo i {
   cursor: pointer;
 }
 .imposterButtons .start {
-  border: 2px solid var(--moon);
+  border: 3px solid #03a9f4;
 }
 .imposterButtons .start i {
-  color: var(--moon);
-  margin-left: 6px;
+  color: #03a9f4;
+  margin-right: 6px;
 }
-.imposterBox .start:hover {
-  background-color: #111;
-}
+
 .imposterBox .hint {
-  border: 2px solid var(--accent);
+  border: 3px solid var(--accent);
 }
 .imposterBox .hint i {
   color: var(--accent);
@@ -349,12 +351,27 @@ h2.logo i {
 }
 
 .imposterBox .hint.check {
-  border: 2px solid var(--danger);
+  border: 3px solid var(--danger);
 }
 .imposterBox .hint.check i {
   color: var(--danger);
 }
 
+.imposterButtons .delAll {
+  flex: 90%;
+  margin: 0 auto;
+  border: 3px solid var(--danger);
+}
+.imposterBox .delAll i {
+  color: var(--danger);
+  font-weight: bold;
+  margin-right: 8px;
+}
+.imposterBox .delAll:hover,
+.imposterBox .start:hover,
+.imposterBox .hint:hover {
+  background-color: #111;
+}
 /* end imposter */
 
 /* start box */
@@ -495,7 +512,7 @@ h2.logo i {
   justify-content: center;
   align-items: center;
   padding: 12px;
-  transition: all 0.8s;
+  transition: all 0.5s;
 }
 .game-starter-box,
 .dataDisclosure {
@@ -578,6 +595,7 @@ h2.logo i {
 }
 .next > i {
   color: var(--moon);
+  font-size: 22px;
   margin-left: 6px;
 }
 .next:hover {

@@ -3,13 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/flag-icons/6.6.6/css/flag-icons.min.css" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/styles/all.min.css" />
+    <link rel="stylesheet" href="styles/style.css" />
     <script src="words.js" defer></script>
     <script src="game.js" defer></script>
     <title>Who's? Imposter</title>
@@ -25,7 +20,7 @@
       <!-- Start Header-->
       <div class="header" dir="ltr">
         <h2 class="logo">
-          Who's imposter<i class="fa-solid fa-user-secret fa-sm"></i>?!
+          Who's imposter <i class="fa-solid fa-user-secret fa-sm"></i>?!
         </h2>
         <div class="head-icons">
           <i class="fa-regular fa-circle-question fa-lg notes"></i>
@@ -41,13 +36,13 @@
       <div class="playersBox">
         <h3>اللاعبين <i class="fa-solid fa-users"></i></h3>
         <ul class="playersList"></ul>
-        <h4 class="addPLAYERS"><i class="fa-solid fa-user-plus"></i>إضافة</h4>
+        <h4 class="addPLAYERS">إضافة</h4>
       </div>
       <!-- End Players -->
 
       <!-- Start Categories -->
       <div class="categoriesBox">
-        <h3>الفئات<i class="fa-solid fa-icons"></i></h3>
+        <h3>الفئات <i class="fa-solid fa-icons"></i></h3>
         <ul class="types">
           <li data-category="food">
             <i class="fa-solid fa-pizza-slice"></i>مأكولات
@@ -56,7 +51,7 @@
             <i class="fa-solid fa-futbol"></i> رياضة
           </li>
           <li class="hidden" data-category="animals">
-            <i class="fa-solid fa-dog"></i>حيوانات
+            <i class="fa-solid fa-otter"></i>حيوانات
           </li>
           <li class="hidden" data-category="things">
             <i class="fa-solid fa-dice"></i> منوعات
@@ -64,20 +59,26 @@
           <li class="hidden" data-category="daily">
             <i class="fa-solid fa-house"></i>أشياء يومية
           </li>
+          <li class="hidden" data-category="islamic">
+            <i class="fa-solid fa-star-and-crescent"></i>إسلاميات
+          </li>
           <li class="hidden" data-category="weather">
             <i class="fa-solid fa-cloud-sun"></i>الطقس
           </li>
-          <li class="hidden" data-category="celebrities">
+          <li class="hidden" data-category="famous">
             <i class="fa-solid fa-star"></i>مشاهير
           </li>
           <li class="hidden" data-category="jobs">
             <i class="fa-solid fa-user-tie"></i>المهن
           </li>
           <li class="hidden" data-category="brands">
-            <i class="fa-solid fa-shirt"></i>براندات
+            <i class="fa-solid fa-hand-holding-dollar"></i>براندات
           </li>
           <li class="hidden" data-category="places">
-            <i class="fa-solid fa-landmark"></i>أماكن
+            <i class="fa-solid fa-map-location-dot"></i>أماكن
+          </li>
+          <li class="hidden" data-category="purview">
+            <i class="fa-solid fa-landmark"></i>اختصاصات
           </li>
         </ul>
         <h4 id="toggleBtn">المزيد</h4>
@@ -87,7 +88,7 @@
 
       <!-- Start Imposter -->
       <div class="imposterBox">
-        <h3>المحتالين <i class="fa-solid fa-user-ninja"></i></h3>
+        <h3>المحتالين <i class="fa-solid fa-user-secret"></i></h3>
         <form class="count-imposter">
           <label>
             <input type="radio" name="option" value="1" checked />
@@ -104,9 +105,12 @@
         </form>
         <div class="imposterButtons">
           <button class="start">
-            <i class="fa-solid fa-forward-step"></i>ابدأ اللعبة
+            ابدأ اللعبة <i class="fa-solid fa-forward fa-lg"></i>
           </button>
           <button class="hint">تلميح <i class="fa-solid fa-check"></i></button>
+          <button class="delAll">
+            حذف الكل <i class="fa-solid fa-trash-can"></i>
+          </button>
         </div>
       </div>
       <!-- End Imposter -->
@@ -147,9 +151,14 @@
     <!-- Start Guessing Began -->
     <div class="guessing-began">
       <h2>بدأت اللعبة! حان وقت الأمساك بال Imposter.</h2>
-      <h3><span class="startWith">kader</span> يبدأ المحادثة ...<i class="fa-solid fa-microphone fa-lg"></i></h3>
+      <h3>
+        <span class="startWith">kader</span> يبدأ المحادثة ...<i
+          class="fa-solid fa-microphone fa-lg"></i>
+      </h3>
       <p class="disclosure">كشف ال Imposter والكلمة!</p>
-      <a href="#" class="startingOver">البدأ من جديد <i class="fa-solid fa-house"></i></a>
+      <a href="#" class="startingOver"
+        >البدأ من جديد <i class="fa-solid fa-house"></i
+      ></a>
     </div>
     <!-- End Guessing Began -->
 
