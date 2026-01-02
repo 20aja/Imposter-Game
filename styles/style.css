@@ -150,7 +150,8 @@ h2.logo i {
 }
 .playersList {
   width: 100%;
-  min-height: 100px;
+  height: 100px;
+  overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
