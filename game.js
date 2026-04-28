@@ -1,15 +1,14 @@
-// =================================
-// UI:  شاشة البداية
-// =================================
+//شاشة البداية
+
 setTimeout(function () {
   document.querySelector(".startScreen").style.opacity = "0";
   setTimeout(function () {
     document.querySelector(".startScreen").remove();
   }, 1000);
 }, 3000);
-// =================================
-// UI:  الفئات
-// =================================
+
+//الفئات
+
 const items = document.querySelectorAll(".types li");
 const savedActive = JSON.parse(localStorage.getItem("activeItems")) || [];
 savedActive.forEach((index) => {
@@ -46,9 +45,8 @@ btn.addEventListener("click", () => {
   expanded = !expanded;
 });
 
-// =================================
 // UI: تغيير المود
-// =================================
+
 let mode = localStorage.getItem("Mode") || "night";
 if (mode === "day") {
   document.body.classList.add("changeMode");
@@ -66,9 +64,9 @@ document.querySelector(".mode").addEventListener("click", function () {
     mode = "night";
   }
 });
-// =================================
+
 // UI: عرض وإخفاء صندوق تعديل اللاعبين
-// =================================
+
 document.querySelector(".addPLAYERS").onclick = function () {
   document.querySelector(".box").classList.toggle("hidee");
 };
@@ -87,20 +85,20 @@ document.querySelector(".closNote").onclick = () => {
   document.querySelector(".showNotes").classList.remove("hidee");
 };
 
-// // =================================
-// // UI: قلب الكرت باللمس (اضغط واستمر)
-// // =================================
+// قلب الكرت باللمس (اضغط واستمر)
 const flippedBox = document.querySelector(".flippedBox");
 flippedBox.addEventListener("touchstart", function () {
+  document.getElementById("showsund").currentTime = 0;
+  document.getElementById("showsund").play();
   flippedBox.classList.add("flip");
 });
 flippedBox.addEventListener("touchend", function () {
+  document.getElementById("flipsund").currentTime = 0;
+  document.getElementById("flipsund").play();
   flippedBox.classList.remove("flip");
 });
 
-// // =================================
-// // عناصر DOM
-// // =================================
+// عناصر DOM
 const addButton = document.querySelector(".addButton");
 const playerTXT = document.querySelector(".playerTXT");
 const playersList = document.querySelector(".playersList");
@@ -114,15 +112,14 @@ const ul = document.querySelector(".ul");
 const guessingBegan = document.querySelector(".guessing-began");
 const dataDisclosure = document.querySelector(".dataDisclosure");
 const startingOver = document.querySelector(".startingOver");
-const startingOver2 = document.querySelector(".startingOver2");
 const disclosure = document.querySelector(".disclosure");
 let imposterNAME = [];
 let keyNAME;
-let counT = 1;
+let create_or_update = "create";
+let updateIndex;
 
-// =================================
 // ألوان اللاعبين
-// =================================
+
 const colors = [
   "#ffff50ff",
   "#7aff52ff",
@@ -148,9 +145,8 @@ const colors = [
 // جلب الفئات المختارة من واجهة HTML
 function getSelectedCategories() {
   let selected = [];
-  let test = document.querySelectorAll(".types li");
-
-  test.forEach(function (el) {
+  let categories = document.querySelectorAll(".types li");
+  categories.forEach(function (el) {
     if (el.classList.contains("active")) {
       let categoryName = el.getAttribute("data-category");
       selected.push(categoryName);
@@ -170,7 +166,6 @@ function getWordsFromSelected() {
         wordsPool.push({
           word: word,
           hint: categoriesWords[cat].hints[i],
-          category: cat,
         });
       });
     }
@@ -203,9 +198,9 @@ document.querySelectorAll(".types li").forEach((el) => {
     startGame();
   });
 });
-// =================================
+
 // حالة اللعبة (State)
-// =================================
+
 let namesOfplayers = JSON.parse(localStorage.getItem("NAMES") || "[]");
 let impostersCount = 1; // عدد المحتالين المختار
 let imposters = []; // اندكسات المحتالين
@@ -214,18 +209,14 @@ let commonKey = ""; // الكلمة الموحدة (لغير المحتالين)
 let imposterValue = ""; // الكلمة الخاصة (للمحتالين)
 const gameBox = document.querySelector(".game-starter-box");
 
-// =================================
 // اختيار عدد المحتالين من الراديو
-// =================================
 document.querySelector(".count-imposter").addEventListener("change", () => {
   const value = document.querySelector('input[name="option"]:checked').value;
   impostersCount = +value;
-  counT = +value;
 });
 
-// =================================
 // عرض اللاعبين في واجهة التعديل وواجهة العد
-// =================================
+
 function renderPlayers() {
   ul.innerHTML = "";
   playersList.innerHTML = "";
@@ -233,73 +224,65 @@ function renderPlayers() {
   namesOfplayers.forEach((name, i) => {
     ul.innerHTML += `
       <li>
-        <input class="player" type="text" value="${name}" data-index="${i}" />
-        <i class="fa-solid fa-pen edit" data-edit="${i}"></i>
-        <i class="fa-solid fa-times del" data-del="${i}"></i>
+        <input class="player" type="text" value="${i + 1}. ${name}" data-index="${i}" disabled/>
+        <i class="fa-solid fa-pen edit" id="${i}" onclick="editPlayer(${i})"></i>
+        <i class="fa-solid fa-times del" onclick="deletePlayer(${i})"></i>
       </li>
     `;
     playersList.innerHTML += `
-      <li>${name} <i class="fa-solid fa-times fa-0 del" data-del="${i}"></i></li>
+      <li>${name} <i class="fa-solid fa-times" onclick="deletePlayer(${i})"></i></li>
     `;
   });
 }
 renderPlayers();
 
-// =================================
 // إضافة لاعب
-// =================================
+
 addButton.onclick = function () {
   const name = playerTXT.value.trim();
-  if (name) {
-    namesOfplayers.push(name);
-    playerTXT.value = "";
-    localStorage.setItem("NAMES", JSON.stringify(namesOfplayers));
-    renderPlayers();
-    playerTXT.style.borderColor = "#22c55e";
+  if (create_or_update === "create") {
+    if (name) {
+      namesOfplayers.push(name);
+      playerTXT.value = "";
+      localStorage.setItem("NAMES", JSON.stringify(namesOfplayers));
+      renderPlayers();
+      playerTXT.style.borderColor = "#006492";
+    } else {
+      playerTXT.style.borderColor = "#db0000";
+      setTimeout(() => (playerTXT.style.borderColor = "#006492"), 2000);
+    }
   } else {
-    playerTXT.style.borderColor = "red";
-    setTimeout(() => (playerTXT.style.borderColor = "#22c55e"), 2000);
+    if (name) {
+      create_or_update = "create";
+      namesOfplayers[updateIndex] = playerTXT.value;
+      localStorage.setItem("NAMES", JSON.stringify(namesOfplayers));
+      document.querySelector(".addButton i").classList.remove("fa-check");
+      playerTXT.value = "";
+      renderPlayers();
+    }
   }
   playerTXT.focus();
 };
 
-// =================================
-// حذف وتحرير لاعب (تفويض أحداث)
-// =================================
-document.addEventListener("click", (e) => {
-  // حذف
-  const delIndex = e.target.getAttribute("data-del");
-  if (delIndex !== null) {
-    namesOfplayers.splice(+delIndex, 1);
-    localStorage.setItem("NAMES", JSON.stringify(namesOfplayers));
-    renderPlayers();
-    return;
-  }
-  // تحرير
-  const editIndex = e.target.getAttribute("data-edit");
-  if (editIndex !== null) {
-    const input = ul.querySelector(`input[data-index="${editIndex}"]`);
-    if (input) {
-      input.focus();
-      input.select();
-    }
-  }
-});
+// حذف لاعب
+function deletePlayer(i) {
+  namesOfplayers.splice(i, 1);
+  localStorage.setItem("NAMES", JSON.stringify(namesOfplayers));
+  renderPlayers();
+}
+// تحرير لاعب
+function editPlayer(i) {
+  updateIndex = i;
+  create_or_update = "update";
+  document.querySelector(".addButton i").classList.add("fa-check");
+  document.getElementById(`${i}`).style.transform = "rotate(45deg)";
+  document.getElementById(`${i}`).style.top = "25%";
+  playerTXT.value = namesOfplayers[i];
+  playerTXT.focus();
+}
 
-// حفظ التعديلات عند تغيير النص
-ul.addEventListener("input", (e) => {
-  const input = e.target;
-  if (input.classList.contains("player")) {
-    const idx = +input.getAttribute("data-index");
-    namesOfplayers[idx] = input.value.trim();
-    localStorage.setItem("NAMES", JSON.stringify(namesOfplayers));
-    renderPlayers();
-  }
-});
-
-// =================================
 // أدوات مساعدة
-// =================================
+
 function uniqueRandomIndices(length, count) {
   const set = new Set();
   while (set.size < Math.min(count, length)) {
@@ -307,11 +290,6 @@ function uniqueRandomIndices(length, count) {
   }
   return [...set];
 }
-
-// =================================
-// عرض اللاعب الحالي على الكرت
-// =================================
-
 // حذف أو إضافة تلميح
 const hintEl = document.querySelector(".hint");
 const iconEl = document.querySelector(".hint i");
@@ -348,20 +326,18 @@ hintEl.addEventListener("click", () => {
 function showPlayer(index) {
   const name = namesOfplayers[index];
   const color = colors[index % colors.length];
+
   frontName.textContent = name;
   frontFace.style.backgroundColor = color;
   backFace.style.backgroundColor = color;
 
   // إذا اللاعب محتـال → يعرض كلمة Imposter فوق التلميح
   const isImposter = imposters.includes(index);
-  backWord.textContent = isImposter
-    ? `أنت Imposter - ${hintCase === true ? hint : ""}`
-    : word;
+  backWord.textContent = isImposter ? `أنت Imposter - ${hintCase === true ? hint : ""}` : word;
 }
 
-// =================================
 // بدء اللعبة
-// =================================
+
 function errors(error) {
   let interval = setInterval(function () {
     document.querySelector(`.error-box${error}`).classList.add("hidee");
@@ -373,7 +349,7 @@ function errors(error) {
 }
 
 startBtn.onclick = function () {
-  if (namesOfplayers.length < 3) {
+  if (namesOfplayers.length < 3 || namesOfplayers.length > 20) {
     errors(1);
     return;
   }
@@ -384,16 +360,18 @@ startBtn.onclick = function () {
 
   // اختيار المحتالين حسب العدد المختار بدون تكرار
   imposters = uniqueRandomIndices(namesOfplayers.length, impostersCount);
+
   // تهيئة المؤشر والواجهة
   currentIndex = 0;
   gameBox.classList.add("go");
   showPlayer(currentIndex);
 };
 
-// =================================
 // اللاعب التالي
-// =================================
+
 nextBtn.onclick = function () {
+  document.getElementById("passing").currentTime = 0;
+  document.getElementById("passing").play();
   currentIndex++;
   if (currentIndex < namesOfplayers.length) {
     showPlayer(currentIndex);
@@ -401,56 +379,40 @@ nextBtn.onclick = function () {
     // نهاية اللعبة
     gameBox.classList.remove("go");
     guessingBegan.classList.add("goGuessing");
-    document.querySelector(".startWith").textContent =
-      namesOfplayers[Math.floor(Math.random() * namesOfplayers.length)];
-
+    document.querySelector(".startWith").textContent = namesOfplayers[Math.floor(Math.random() * namesOfplayers.length)];
     // اطبع أسماء المحتالين في الكونسول
     imposters.forEach((idx) => {
-      imposterNAME.push(namesOfplayers[idx]);
+      imposterNAME.push(`( ${namesOfplayers[idx]} )`);
     });
   }
 };
 disclosure.onclick = () => {
   guessingBegan.classList.remove("goGuessing");
   document.querySelector(".dataDisclosure").classList.add("go");
-  document.querySelector(".dataDisclosure .showWord").textContent = word;
-  if (counT == 1) {
-    document.querySelector(".impostername").textContent = imposterNAME[0];
-  } else if (counT == 2) {
-    document.querySelector(
-      ".impostername"
-    ).textContent = `${imposterNAME[0]} و ${imposterNAME[1]}`;
-  } else {
-    document.querySelector(
-      ".impostername"
-    ).textContent = `${imposterNAME[0]} و ${imposterNAME[1]} و ${imposterNAME[2]}`;
+  document.querySelector(".dataDisclosure .showWord").textContent = `( ${word} )`;
+  if (impostersCount) {
+    document.querySelector(".impostername").textContent = imposterNAME.join(" ");
   }
 };
 
 // البدأ من جديد
-startingOver.onclick = () => {
-  dataDisclosure.classList.remove("go");
-  guessingBegan.classList.remove("goGuessing");
-  imposterNAME = [];
-  startGame();
-};
-startingOver2.onclick = () => {
-  dataDisclosure.classList.remove("go");
-  guessingBegan.classList.remove("goGuessing");
-  startGame();
-  imposterNAME = [];
-};
+
+document.querySelectorAll(".startingOver").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    dataDisclosure.classList.remove("go");
+    guessingBegan.classList.remove("goGuessing");
+    imposterNAME = [];
+    startGame();
+  });
+});
 
 // delete all
-function delAllfunction() {
-  let delPrompt = confirm("هل أنت متأكد من حذف جميع البيانات؟!");
-  if (delPrompt) {
-    localStorage.clear();
-    location.reload();
-  }
-}
 document.querySelector(".delAll").onclick = () => {
   if (localStorage.length > 0) {
-    delAllfunction();
+    let delprompt = confirm("هل أنت متأكد من حذف جميع البيانات؟!");
+    if (delprompt) {
+      localStorage.clear();
+      location.reload();
+    }
   }
 };
